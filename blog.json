@@ -1,0 +1,17 @@
+{
+    "posts": [
+      {
+        "fecha": "2025-04-01",
+        "titulo": "Aventuras mágicas",
+        "contenido": "Hoy me embarqué en una aventura mágica, donde cada paso estaba lleno de colores y sorpresas. El camino se iluminó con la luz de mil sonrisas, y aprendí que la imaginación es el mejor motor para volar.",
+        "imagen": ""
+      },
+      {
+        "fecha": "2025-03-25",
+        "titulo": "Cuentos de sueños",
+        "contenido": "En un rincón de mi mente se esconde un cuento que habla de estrellas y deseos infinitos. Cada palabra es un destello que me invita a soñar sin límites.",
+        "imagen": "img/blog2.jpg"
+      }
+    ]
+  }
+  

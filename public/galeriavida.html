@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FotoVida – Galería de Vida</title>
+  <!-- Vinculamos el CSS externo -->
+  <link rel="stylesheet" href="Estilos/galeriavida.css">
+</head>
+<body class="light-mode">
+  <!-- Encabezado -->
+  <header class="header-principal">
+  <nav class="navegacion">
+    <!-- Logo animado -->
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../imagenes/mariposa.png" alt="Logo de Sammy">
+        <span>Sammy 🌈</span>
+      </a>
+    </div>
+    <!-- Menú de navegación -->
+    <ul class="nav-lista">
+      <!-- Categoría: Inicio -->
+      <li class="dropdown">
+        <a href="../index.html#inicio">Inicio</a>
+        <ul class="dropdown-menu">
+          <li><a href="../index.html#inicio">Bienvenida</a></li>
+          <li><a href="../index.html#educacion">Educación</a></li>
+          <li><a href="../index.html#familia">Familia</a></li>
+        </ul>
+      </li>
+      <!-- Categoría: Sobre mí -->
+      <li class="dropdown">
+        <a href="../about.html#presentacion">Sobre mí</a>
+        <ul class="dropdown-menu">
+          <li><a href="../about.html#presentacion">Presentación</a></li>
+          <li><a href="../about.html#gustos">Cosas Favoritas</a></li>
+          <li><a href="../about.html#videoPresentacion">Video Presentación</a></li>
+          <li><a href="../about.html#miGaleria">Galería</a></li>
+          <li><a href="../about.html#mapaDeSuenos">Mapa de Sueños</a></li>
+        </ul>
+      </li>
+      <!-- Categoría: Galería de Vida -->
+      <li class="dropdown">
+        <a href="#">Galería Vida</a>
+        <ul class="dropdown-menu">
+          <li><a href="galeriavida.html#inicio">Inicio</a></li>
+          <li><a href="galeriavida.html#galeria">Galería</a></li>
+          <li><a href="galeriavida.html#diario-fotografico">Diario</a></li>
+          <li><a href="galeriavida.html#linea-tiempo">Línea del Tiempo</a></li>
+          <li><a href="galeriavida.html#mapa-aventuras">Mapa</a></li>
+          <li><a href="galeriavida.html#emociones">Mis Emociones</a></li>
+          <li><a href="galeriavida.html#recuerdos">Recuerdos</a></li>
+        </ul>
+      </li>
+      <!-- Categoría sin submenú -->
+      <li><a href="contact.html">Contáctame</a></li>
+    </ul>
+    <!-- Botón de menú hamburguesa (aparece en móviles) -->
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </nav>
+  <!-- Barra de progreso para scroll -->
+  <div class="header-progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</header>
+
+  <!-- HERO: Entrada principal animada -->
+  <section id="inicio" class="hero">
+    <!-- Capa de fondo: imagen/video/3D (se usa imagen placeholder de cielo estrellado) -->
+    <div class="hero-bg"></div>
+    <!-- Capa de partículas (placeholder para efecto flotante) -->
+    <div class="particles"></div>
+    <!-- Capa de nubes animadas en movimiento lento -->
+    <div class="clouds"></div>
+    <!-- Contenido interactivo y narrativo -->
+    <div class="hero-content">
+      <br>
+      <h1 class="hero-title">Donde cada imagen <br>es un pedacito de tu alma…</h1>
+      <!-- Subtítulo con efecto typewriter -->
+      <p class="hero-subtitle" id="typewriter"></p>
+      <!-- Botón principal con animación de partículas al pasar el mouse -->
+      <button class="explore-btn" id="exploreBtn">✨ Explorar mis Recuerdos</button>
+    </div>
+  </section>
+
+  <!-- PANEL DE BIENVENIDA PERSONALIZADO -->
+  <section class="welcome-panel" id="welcomePanel">
+    <div class="avatar">
+      <img src="../imagenes/oveja.png" alt="Avatar">
+    </div>
+    <!-- Mensaje personalizado según la hora del día -->
+    <div class="welcome-message" id="welcomeMessage"></div>
+    <!-- Estadísticas rápidas (placeholder, se ampliará en futuras versiones) -->
+    <div class="stats">
+      <p>Total de fotos subidas: <span id="totalFotos">123</span></p>
+      <p>Emociones exploradas: <span id="emocionesExploradas">8</span></p>
+      <p>Último recuerdo visto: <span id="ultimoRecuerdo">Amanecer Dorado</span></p>
+    </div>
+  </section>
+
+  <!-- SECCIÓN "UN RECUERDO PARA TI" -->
+  <section class="random-memory" id="randomMemory">
+    <h2>Un recuerdo para ti</h2>
+    <div class="memory-card">
+      <img src="../imagenes/fondo6.jpeg" alt="Recuerdo del pasado">
+      <p class="memory-text">Una imagen de un día inolvidable, llena de magia y emoción.</p>
+      <button class="memory-btn" id="memoryBtn">Ver más como este</button>
+    </div>
+  </section>
+
+
+  <section id="galeria">
+    <h2>Galería de Vida</h2>
+    
+    <!-- Menú de filtros por categoría -->
+    <div class="filter-menu">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="Familia">Familia</button>
+      <button class="filter-btn" data-filter="Amigos">Amigos</button>
+      <button class="filter-btn" data-filter="Viajes">Viajes</button>
+      <button class="filter-btn" data-filter="Aventuras">Aventuras</button>
+      <button class="filter-btn" data-filter="Naturaleza">Naturaleza</button>
+      <button class="filter-btn" data-filter="Eventos">Eventos Importantes</button>
+      <button class="filter-btn" data-filter="Selfies">Autorretratos</button>
+      <button class="filter-btn" data-filter="Favoritas">Cosas Favoritas</button>
+    </div>
+    
+    <!-- Menú de filtros por emoción -->
+    <div class="emotion-menu">
+      <button class="emotion-btn active" data-emotion="all">Todas</button>
+      <button class="emotion-btn" data-emotion="Alegría">😊 Alegría</button>
+      <button class="emotion-btn" data-emotion="Tristeza">🌧️ Tristeza</button>
+      <button class="emotion-btn" data-emotion="Amor">💖 Amor</button>
+      <button class="emotion-btn" data-emotion="Nostalgia">🕰️ Nostalgia</button>
+      <button class="emotion-btn" data-emotion="Orgullo">🌟 Orgullo</button>
+      <button class="emotion-btn" data-emotion="Asombro">😮 Asombro</button>
+      <button class="emotion-btn" data-emotion="Paz">☁️ Paz</button>
+    </div>
+    
+    <!-- Botones para alternar vistas: Mosaico / Carrusel -->
+    <div class="view-toggle">
+      <button id="gridViewBtn" class="active">Mosaico</button>
+      <button id="carouselViewBtn">Carrusel</button>
+    </div>
+    
+    <!-- Vista de Galería en Mosaico (Grid) -->
+    <div id="galleryGrid" class="gallery-grid">
+      <!-- Bloque 1 -->
+      <div class="gallery-block">
+        <!-- Cada imagen incluye la clase "gallery-item" y atributos "data-*" necesarios para filtro y modal -->
+        <img class="gallery-item" src="../imagenes/fondo6.jpeg" alt="Foto 1" 
+             data-category="Familia" data-emotion="Alegría" data-date="2025-04-10" data-title="Foto 1" data-story="Recuerdo de un día feliz">
+        <img class="gallery-item" src="../imagenes/fondo8.jpeg" alt="Foto 2" 
+             data-category="Familia" data-emotion="Alegría" data-date="2025-04-11" data-title="Foto 2" data-story="Momentos llenos de amor">
+        <img class="gallery-item" src="../imagenes/Familia/Grupal1.jpeg" alt="Foto 3" 
+             data-category="Familia" data-emotion="Alegría" data-date="2025-04-12" data-title="Foto 3" data-story="Instantes que iluminan el alma">
+        <img class="gallery-item" src="../imagenes/Familia/Grupo2.jpeg" alt="Foto 4" 
+             data-category="Familia" data-emotion="Alegría" data-date="2025-04-13" data-title="Foto 4" data-story="Risas y abrazos eternos">
+      </div>
+
+      <!-- Bloque 2 -->
+      <div class="gallery-block">
+        <img class="gallery-item" src="../imagenes/fonto2 galeria.jpeg" alt="Foto 5" 
+             data-category="Viajes" data-emotion="Nostalgia" data-date="2025-03-25" data-title="Foto 5" data-story="Paisajes que cuentan historias">
+        <img class="gallery-item" src="../imagenes/fondo3.jpeg" alt="Foto 6" 
+             data-category="Viajes" data-emotion="Nostalgia" data-date="2025-03-26" data-title="Foto 6" data-story="Aventuras en tierras lejanas">
+        <img class="gallery-item" src="../imagenes/fondo5.jpeg" alt="Foto 7" 
+             data-category="Viajes" data-emotion="Nostalgia" data-date="2025-03-27" data-title="Foto 7" data-story="Ecos de caminos recorridos">
+        <img class="gallery-item" src="../imagenes/fondo4.jpeg" alt="Foto 8" 
+             data-category="Viajes" data-emotion="Nostalgia" data-date="2025-03-28" data-title="Foto 8" data-story="Recuerdos en cada esquina">
+      </div>
+
+      <!-- Bloque 3 -->
+      <div class="gallery-block">
+        <img class="gallery-item" src="../imagenes/Eventos/Evento1.jpeg" alt="Foto 9" 
+             data-category="Amigos" data-emotion="Amor" data-date="2025-04-01" data-title="Foto 9" data-story="Juntos en cada instante">
+        <img class="gallery-item" src="../imagenes/Eventos/Evento 2.jpeg" alt="Foto 10" 
+             data-category="Amigos" data-emotion="Amor" data-date="2025-04-02" data-title="Foto 10" data-story="Sonrisas compartidas">
+        <img class="gallery-item" src="../imagenes/Eventos/Evento 3.png" alt="Foto 11" 
+             data-category="Amigos" data-emotion="Amor" data-date="2025-04-03" data-title="Foto 11" data-story="Un vínculo inquebrantable">
+        <img class="gallery-item" src="../imagenes/Eventos/Evento 4.jpeg" alt="Foto 12" 
+             data-category="Amigos" data-emotion="Amor" data-date="2025-04-04" data-title="Foto 12" data-story="Recuerdos grabados en el tiempo">
+      </div>
+    </div>
+    
+    <!-- Vista de Galería en Carrusel (oculta por defecto) -->
+    <div id="galleryCarousel" class="gallery-carousel" style="display: none;">
+      <div class="carousel-item" 
+           data-category="Familia" 
+           data-emotion="Alegría" 
+           data-date="2025-04-10" 
+           data-title="Reunión Familiar" 
+           data-story="Un día lleno de risas y abrazos.">
+        <img src="https://via.placeholder.com/600x400?text=Familia1" alt="Reunión Familiar">
+      </div>
+      <div class="carousel-item" 
+           data-category="Viajes" 
+           data-emotion="Nostalgia" 
+           data-date="2025-03-25" 
+           data-title="Aventura en la montaña" 
+           data-story="Descubriendo paisajes que dejan huella.">
+        <img src="https://via.placeholder.com/600x400?text=Viajes1" alt="Aventura en la montaña">
+      </div>
+      <div class="carousel-item" 
+           data-category="Amigos" 
+           data-emotion="Amor" 
+           data-date="2025-04-01" 
+           data-title="Noche de risas" 
+           data-story="Amistad que se celebra en cada encuentro.">
+        <img src="https://via.placeholder.com/600x400?text=Amigos1" alt="Noche de risas">
+      </div>
+      <!-- Flechas para navegación -->
+      <button class="carousel-nav prev" id="prevBtn">&#10094;</button>
+      <button class="carousel-nav next" id="nextBtn">&#10095;</button>
+    </div>
+    
+    <!-- Modal Lightbox Personalizado -->
+    <div id="lightboxModal" class="lightbox-modal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <img id="modalImg" src="" alt="Imagen Ampliada">
+        <div class="modal-info">
+          <h3 id="modalTitle"></h3>
+          <p id="modalDate"></p>
+          <p id="modalStory"></p>
+          <p id="modalEmotion"></p>
+          <button id="likeBtn" class="reaction-btn">❤️</button>
+          <button id="starBtn" class="reaction-btn">🌟</button>
+          <button id="cryBtn" class="reaction-btn">😢</button>
+          <button id="recordDayBtn" class="record-day-btn">Recordar este día</button>
+          <button id="seeMoreBtn" class="see-more-btn">Ver más como esta</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botón "Recuerdo Aleatorio" -->
+    <button id="randomBtn" class="random-btn">Sorpréndeme</button>
+    
+    <!-- Contador de Fotos Vistas -->
+    <div id="viewCounter" class="view-counter">
+      Fotos vistas: <span id="counter">0</span>
+    </div>
+  </section>
+
+  <section id="diario-fotografico">
+    <header class="diario-header">
+      <h2>Diario Fotográfico</h2>
+      <p>Conserva cada instante a flor de piel y revive tus emociones día a día.</p>
+    </header>
+  
+    <!-- Calendario visual / Selector por fecha -->
+    <div class="date-selector">
+      <label for="diaryDate">Selecciona una fecha:</label>
+      <input type="date" id="diaryDate">
+    </div>
+  
+    <!-- Filtro por emoción o tipo de día -->
+    <div class="filter-emotion">
+      <button class="emotion-filter" data-emotion="all">Todas</button>
+      <button class="emotion-filter" data-emotion="Alegría">😊 Alegría</button>
+      <button class="emotion-filter" data-emotion="Tristeza">🌧️ Tristeza</button>
+      <button class="emotion-filter" data-emotion="Amor">💖 Amor</button>
+      <button class="emotion-filter" data-emotion="Nostalgia">🕰️ Nostalgia</button>
+      <button class="emotion-filter" data-emotion="Inspiración">✨ Inspiración</button>
+    </div>
+  
+    <!-- Contenedor de entradas diarias (Tarjetas) -->
+    <div class="diary-entries">
+      <!-- Tarjeta de entrada 1 -->
+      <article class="diary-card" data-emotion="Alegría" data-date="2025-04-10">
+        <figure class="diary-image">
+          <img src="../imagenes/fonto2 galeria.jpeg" alt="Foto del Día">
+        </figure>
+        <div class="diary-info">
+          <h3 class="diary-date">10 de Abril del 2025</h3>
+          <p class="diary-emotion">Alegría 😊</p>
+          <p class="diary-text">
+            Hoy he sentido una felicidad inmensa, como si el sol hubiera decidido iluminar mi corazón.
+          </p>
+          <div class="diary-icons">
+            <span>😊</span>
+          </div>
+          <button class="mark-inolvidable">Marcar como Día Inolvidable</button>
+        </div>
+      </article>
+  
+      <!-- Tarjeta de entrada 2 -->
+      <article class="diary-card" data-emotion="Nostalgia" data-date="2025-04-09">
+        <figure class="diary-image">
+          <img src="../imagenes/fondo9.jpeg" alt="Foto del Día">
+        </figure>
+        <div class="diary-info">
+          <h3 class="diary-date">09 de Abril del 2025</h3>
+          <p class="diary-emotion">Nostalgia 🕰️</p>
+          <p class="diary-text">
+            El aroma de la lluvia y los recuerdos de antaño me llenan de melancolía y dulzura.
+          </p>
+          <div class="diary-icons">
+            <span>🕰️</span>
+          </div>
+          <button class="mark-inolvidable">Marcar como Día Inolvidable</button>
+        </div>
+      </article>
+      
+      <!-- Agrega más tarjetas siguiendo la misma estructura si lo deseas -->
+    </div>
+  
+    <!-- Navegación entre días -->
+    <nav class="diary-nav">
+      <button id="prevDay">← Día Anterior</button>
+      <button id="nextDay">Día Siguiente →</button>
+    </nav>
+  
+    <!-- Botón mágico: "Hoy en mi historia" -->
+    <div class="today-btn-container">
+      <button id="todayStoryBtn">Hoy en mi historia</button>
+    </div>
+  </section>
+  
+ 
+<section id="linea-tiempo">
+  <h2>Línea de Tiempo</h2>
+  
+  <!-- Filtros por año y emoción (puedes agregar selectores si lo deseas) -->
+  <div class="timeline-filters">
+    <select id="yearFilter">
+      <option value="all">Todos los años</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
+      <!-- Más años según se requiera -->
+    </select>
+    <select id="emotionFilter">
+      <option value="all">Todas las emociones</option>
+      <option value="Alegría">Alegría</option>
+      <option value="Tristeza">Tristeza</option>
+      <option value="Amor">Amor</option>
+      <option value="Nostalgia">Nostalgia</option>
+      <!-- Más emociones -->
+    </select>
+  </div>
+  
+  <!-- Barra cronológica principal -->
+  <div class="timeline-bar">
+    <button id="prevTimeline" class="timeline-nav">&larr;</button>
+    <div class="timeline-points">
+      <!-- Cada punto representa un hito con tooltip -->
+      <div class="timeline-point" data-year="2025" data-emotion="Alegría">
+        <div class="point-dot"></div>
+        <div class="point-tooltip">10 Abr 2025: Cumpleaños</div>
+      </div>
+      <div class="timeline-point" data-year="2025" data-emotion="Nostalgia">
+        <div class="point-dot"></div>
+        <div class="point-tooltip">05 Abr 2025: Recuerdo de infancia</div>
+      </div>
+      <div class="timeline-point" data-year="2025" data-emotion="Amor">
+        <div class="point-dot"></div>
+        <div class="point-tooltip">01 Abr 2025: Primer beso</div>
+      </div>
+      <!-- Agrega más puntos según tus recuerdos -->
+    </div>
+    <button id="nextTimeline" class="timeline-nav">&rarr;</button>
+  </div>
+  
+  <!-- Tarjetas flotantes para cada punto -->
+  <div class="timeline-cards">
+    <div class="timeline-card" data-year="2025" data-emotion="Alegría">
+      <img src="../imagenes/Brandon2.jpeg" alt="Cumpleaños">
+      <div class="card-content">
+        <span class="card-date">10 de Abril del 2025</span>
+        <h3 class="card-title">Cumpleaños Inolvidable</h3>
+        <p class="card-text">Una celebración llena de risas, sorpresas y abrazos.</p>
+        <div class="card-emotion">😊</div>
+      </div>
+    </div>
+    <div class="timeline-card" data-year="2025" data-emotion="Nostalgia">
+      <img src="../imagenes/fondo4.jpeg" alt="Recuerdo de infancia">
+      <div class="card-content">
+        <span class="card-date">05 de Abril del 2025</span>
+        <h3 class="card-title">Recuerdo de Infancia</h3>
+        <p class="card-text">Recordando juegos y aventuras que marcaron mi niñez.</p>
+        <div class="card-emotion">🕰️</div>
+      </div>
+    </div>
+    <div class="timeline-card" data-year="2025" data-emotion="Amor">
+      <img src="../imagenes/fondo11.jpeg" alt="Primera chamba">
+      <div class="card-content">
+        <span class="card-date">01 de Abril del 2025</span>
+        <h3 class="card-title">Primer Chamba</h3>
+        <p class="card-text">Un momento muy aburrido.</p>
+        <div class="card-emotion">💖</div>
+      </div>
+    </div>
+    <!-- Más tarjetas según tus recuerdos -->
+  </div>
+  
+  <!-- Botón de modo "viaje automático" -->
+ 
+  
+  <!-- Panel de resumen por décadas o etapas de vida -->
+  <div class="timeline-summary">
+    <h3>Resumen por Décadas</h3>
+    <div class="summary-panel">
+      <div class="summary-item" data-decade="2020s">
+        <h4>2020s</h4>
+        <p>12 recuerdos</p>
+      </div>
+      <div class="summary-item" data-decade="2010s">
+        <h4>2010s</h4>
+        <p>8 recuerdos</p>
+      </div>
+      <!-- Más resumenes si es necesario -->
+    </div>
+  </div>
+</section>
+
+
+<section id="mapa-aventuras">
+  <header class="map-header">
+    <h2>Mapa de Aventuras</h2>
+    <p>Explora y revive cada lugar con un solo clic: tus historias y emociones aguardan en cada marcador.</p>
+  </header>
+
+  <!-- Mapa base personalizado con fondo que cambiará según hora -->
+  <div class="map-base" id="mapBase">
+    <img src="../imagenes/mapa-del-tesoro (1).png" alt="Mapa de Aventuras">
+    
+    <!-- Capa SVG para dibujar rutas entre marcadores -->
+    <svg id="routeLayer"></svg>
+    
+    <!-- Marcadores animados en cada lugar visitado -->
+    <div class="marker" 
+         data-location="Ciudad de los Sueños" 
+         data-story="Un día mágico en la Ciudad de los Sueños" 
+         data-date="2025-04-10" 
+         data-emotion="Alegría" 
+         data-type="viaje"
+         data-top="30%" 
+         data-left="40%">
+      <i class="icon-marker">📍</i>
+    </div>
+
+    <div class="marker" 
+         data-location="Bosque Encantado" 
+         data-story="Un paseo inolvidable por el bosque" 
+         data-date="2025-03-20" 
+         data-emotion="Nostalgia" 
+         data-type="paseo"
+         data-top="60%" 
+         data-left="20%">
+      <i class="icon-marker">🌲</i>
+    </div>
+
+    <div class="marker" 
+         data-location="Playa del Recuerdo" 
+         data-story="Atardecer dorado en la playa" 
+         data-date="2025-02-15" 
+         data-emotion="Tristeza" 
+         data-type="secreto"
+         data-top="50%" 
+         data-left="70%">
+      <i class="icon-marker">🏖️</i>
+    </div>
+  </div>
+  
+  <!-- Panel lateral de categorías (tipo de lugar o emoción) -->
+  <aside class="map-sidebar">
+    <h3>Categorías</h3>
+    <ul>
+      <li data-filter="viaje">Viaje</li>
+      <li data-filter="paseo">Paseo</li>
+      <li data-filter="secreto">Secreto</li>
+    </ul>
+  </aside>
+  
+  <!-- Tarjeta emergente al hacer clic en un marcador -->
+  <div id="mapModal" class="map-modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModalBtn" aria-label="Cerrar Modal">&times;</button>
+      <img id="modalImg" src="https://via.placeholder.com/400x300?text=Recuerdo" alt="Recuerdo del Lugar">
+      <div class="modal-details">
+        <h4 id="modalLocation">Lugar</h4>
+        <p id="modalStory">Historia breve</p>
+        <p id="modalDate">Fecha</p>
+        <p id="modalEmotion">Emoción</p>
+        <button id="seeMoreZone">Ver más de esta zona</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="map-modal" id="mapModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModalBtn">&times;</button>
+      <h3>Recuerdo del Lugar</h3>
+      <p>Ciudad de los Sueños</p>
+      <p>Historia breve</p>
+      <p>Fecha</p>
+      <p>Emoción</p>
+      <button>Ver más de esta zona</button>
+    </div>
+  </div>
+  
+  <!-- Controles adicionales: Botón "Viaje al azar" y filtro por tipo de aventura -->
+  <div class="map-controls">
+    <button id="randomTravelBtn">Viaje al azar</button>
+    <select id="adventureFilter">
+      <option value="all">Todos los tipos</option>
+      <option value="viaje">Viaje</option>
+      <option value="paseo">Paseo</option>
+      <option value="secreto">Secreto</option>
+    </select>
+  </div>
+  
+  <!-- Cofre de Sorpresas: Muestra un recuerdo secreto con efecto mágico -->
+  <div class="sorpresa-panel">
+    <button id="misteryChestBtn">Abrir Cofre Mágico</button>
+    <div id="misteryChestContent" class="mistery-chest-content">
+      ¡Has descubierto un recuerdo secreto!
+    </div>
+  </div>
+  
+  <!-- Mini-mapa para vista rápida (opcional) -->
+
+</section>
+
+
+
+
+
+
+<section id="emociones">
+  <header>
+    <h2>Emociones</h2>
+    <p>Explora y comparte tus sentimientos a través de tarjetas vivas e interactivas.</p>
+  </header>
+
+  <!-- Herramientas: búsqueda, orden, favoritos y generación -->
+  <div class="emotion-tools">
+    <input type="text" id="searchEmotions" placeholder="Buscar emociones...">
+    <div class="sort-controls">
+      <label for="sortDate">Ordenar por fecha:</label>
+      <select id="sortDate">
+        <option value="desc">Más reciente primero</option>
+        <option value="asc">Más antiguo primero</option>
+      </select>
+    </div>
+    <button id="toggleFavorites">Mostrar Favoritos</button>
+    <button id="randomItemBtn">Generar Ítem Aleatorio</button>
+    <button id="downloadSummaryBtn">Descargar Resumen</button>
+  </div>
+
+  <!-- Selector de emociones -->
+  <div class="emotion-selectors">
+    <div class="emotion-card alegria" data-emotion="Alegría">
+      <span class="emotion-icon">🌞</span>
+      <p>Alegría</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+    <div class="emotion-card nostalgia" data-emotion="Nostalgia">
+      <span class="emotion-icon">🕰️</span>
+      <p>Nostalgia</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+    <div class="emotion-card amor" data-emotion="Amor">
+      <span class="emotion-icon">💖</span>
+      <p>Amor</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+    <div class="emotion-card orgullo" data-emotion="Orgullo">
+      <span class="emotion-icon">🏆</span>
+      <p>Orgullo</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+    <div class="emotion-card tristeza" data-emotion="Tristeza">
+      <span class="emotion-icon">🌧️</span>
+      <p>Tristeza</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+    <div class="emotion-card asombro" data-emotion="Asombro">
+      <span class="emotion-icon">✨</span>
+      <p>Asombro</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+    <div class="emotion-card paz" data-emotion="Paz">
+      <span class="emotion-icon">🕊️</span>
+      <p>Paz</p>
+      <button class="favorite-btn" aria-label="Favorito">&#10084;</button>
+    </div>
+  </div>
+
+  <!-- Galería emocional -->
+  <div class="emotional-gallery">
+    <!-- Ejemplo de ítem inicial -->
+    <div class="emotional-item" data-emotion="Alegría" data-date="2025-04-10">
+      <img src="https://via.placeholder.com/300x200?text=Foto+de+Alegria" alt="Foto de Alegría">
+      <div class="item-info">
+        <span class="item-date">2025-04-10</span>
+        <p class="item-desc">Hoy sentí una felicidad inmensa.</p>
+        <div class="item-intensity">
+          <span>⭐️⭐️⭐️⭐️☆</span>
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="edit-item">Editar</button>
+        <button class="delete-item">Eliminar</button>
+      </div>
+    </div>
+    <!-- Más items se inyectarán dinámicamente -->
+  </div>
+
+  <!-- Panel flotante de resumen emocional -->
+  <div id="emotionalSummary">
+    <p><strong>Emoción predominante:</strong> <span id="summaryEmotion">Ninguna</span></p>
+    <p><strong>Día más feliz:</strong> <span id="summaryHappyDay">-</span></p>
+    <p><strong>Mes más nostálgico:</strong> <span id="summaryNostalgicMonth">-</span></p>
+    <div class="summary-chart">
+      <canvas id="emotionChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Botón para modo mezcla emocional -->
+  <div class="emotion-mix">
+    <button id="mixEmotionsBtn">Mezcla mágica de emociones</button>
+  </div>
+
+  <!-- Audio ambiental (cambia según emoción) -->
+  <audio id="emotionAudio" preload="auto"></audio>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="recuerdos">
+  <!-- Encabezado dinámico (sin h2 fijo) -->
+  <div class="recuerdos-header">
+    <div class="title-container">
+      <!-- El título se define dinámicamente con JS -->
+      <span id="recuerdosTitle"></span>
+    </div>
+    <p class="recuerdos-mensaje">
+      Porque lo vivido nunca muere; cada recuerdo es un altar de emociones donde el tiempo se detiene.
+    </p>
+  </div>
+
+  <!-- Carrusel principal de recuerdos destacados -->
+  <div class="recuerdos-carrusel">
+    <div class="carrusel-item" data-tipo="inolvidable">
+      <img src="https://via.placeholder.com/600x400?text=Inolvidable+1" alt="Recuerdo Inolvidable 1">
+      <div class="carrusel-info">
+        <span class="carrusel-emotion">🌟</span>
+        <p class="carrusel-desc">El instante que cambió mi vida.</p>
+        <button class="btn-leer">Leer historia</button>
+      </div>
+    </div>
+    <div class="carrusel-item" data-tipo="primeras">
+      <img src="https://via.placeholder.com/600x400?text=Primeras+Veces+1" alt="Recuerdo de Primeras veces 1">
+      <div class="carrusel-info">
+        <span class="carrusel-emotion">🌱</span>
+        <p class="carrusel-desc">El primer destello de un sueño.</p>
+        <button class="btn-leer">Leer historia</button>
+      </div>
+    </div>
+    <!-- Agrega más items destacados si lo deseas -->
+  </div>
+
+  <!-- Filtro por tipo de recuerdo -->
+  <div class="recuerdos-filtros">
+    <button class="filtro-btn" data-filter="todo">Todos</button>
+    <button class="filtro-btn" data-filter="inolvidable">🥇 Inolvidables</button>
+    <button class="filtro-btn" data-filter="primeras">🌱 Primeras veces</button>
+    <button class="filtro-btn" data-filter="dificil">💔 Momentos difíciles</button>
+    <button class="filtro-btn" data-filter="no-volvera">🎉 Cosas que no volverán</button>
+    <button class="filtro-btn" data-filter="favoritos">💖 Favoritos personales</button>
+  </div>
+
+  <!-- Vista tipo mosaico emocional -->
+  <div class="recuerdos-mosaico"></div>
+    <div class="recuerdo-item" data-filter="inolvidable">
+      <img src="https://via.placeholder.com/300x200?text=Recuerdo+1" alt="Recuerdo 1">
+      <div class="recuerdo-info">
+        <h3 class="recuerdo-titulo">Día que cambió mi vida</h3>
+        <p class="recuerdo-fecha">10/04/2025</p>
+        <p class="recuerdo-texto">Una historia de luz y revolución interna que marcó un antes y un después.</p>
+        <div class="recuerdo-emocion">🌟</div>
+        <button class="btn-vivir">Volver a vivir este momento</button>
+      </div>
+    </div>
+    <div class="recuerdo-item" data-filter="primeras">
+      <img src="https://via.placeholder.com/300x200?text=Recuerdo+2" alt="Recuerdo 2">
+      <div class="recuerdo-info">
+        <h3 class="recuerdo-titulo">La primera sonrisa</h3>
+        <p class="recuerdo-fecha">08/04/2025</p>
+        <p class="recuerdo-texto">El inicio de un viaje emocional lleno de inocencia y esperanza.</p>
+        <div class="recuerdo-emocion">🌱</div>
+        <button class="btn-vivir">Volver a vivir este momento</button>
+      </div>
+    </div>
+    <!-- Agrega más tarjetas según tus recuerdos -->
+  </div>
+
+  <!-- Modal ampliado para ver la historia completa -->
+  <div id="recuerdoModal" class="recuerdo-modal">
+    <div class="modal-content">
+      <span class="close-modal" id="closeRecuerdoModal">&times;</span>
+      <img id="modalImg" src="" alt="Imagen Recuerdo">
+      <div class="modal-details">
+        <h3 id="modalTitulo"></h3>
+        <p id="modalFecha"></p>
+        <p id="modalHistoria"></p>
+        <div id="modalEmocion" class="modal-emocion"></div>
+        <audio id="modalMusica" controls preload="auto"></audio>
+        <div class="modal-buttons">
+          <button class="btn-vivir" id="btnVolverVivir">Volver a vivir este momento</button>
+          <button class="btn-compartir" id="btnCompartir">Compartir este recuerdo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel flotante con selección aleatoria: "Hoy recordamos..." -->
+  <div class="panel-recuerdo">
+    <p id="randomRecuerdo"></p>
+  </div>
+  
+  <!-- Botón "Enviar al futuro" -->
+  <div class="future-btn">
+    <button id="sendFutureBtn">Enviar este recuerdo al futuro</button>
+  </div>
+  
+  <!-- Botón "Cadena de recuerdos" -->
+  <div class="chain-btn">
+    <button id="chainRecuerdosBtn">Ver Cadena de Recuerdos</button>
+  </div>
+</section>
+
+
+  <!-- Pie de Página -->
+  <footer id="footer">
+    <div class="footer-top"></div>
+  <!-- Vinculamos el JS externo -->
+  <script src="scripst/galeriavida.js"></script>
+</body>
+</html>

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobre Mí - Sammy 🌈</title>
+  <!-- Enlace al CSS exclusivo para la sección About -->
+  <link rel="stylesheet" href="public/Estilos/about.css">
+  <!-- Fuentes: Comic Neue, Baloo 2, Patrick Hand -->
+  <link href="https://fonts.googleapis.com/css?family=Comic+Neue|Baloo+2|Patrick+Hand&display=swap" rel="stylesheet">
+  <!-- Font Awesome para íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Mantener el Header Igual -->
+  <header class="header-principal">
+    <nav class="navegacion">
+      <!-- Logo animado -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="imagenes/mariposa.png" alt="Logo de Sammy">
+          <span>Sammy 🌈</span>
+        </a>
+      </div>
+      <!-- Menú de navegación -->
+      <ul class="nav-lista">
+        <!-- Categoría: Inicio -->
+        <li class="dropdown">
+          <a href="index.html">Inicio</a>
+          <ul class="dropdown-menu">
+            <li><a href="index.html#inicio">Bienvenida</a></li>
+            <li><a href="index.html#educacion">Educación</a></li>
+            <li><a href="index.html#familia">Familia</a></li>
+          </ul>
+        </li>
+        <!-- Categoría: Sobre mí -->
+        <li class="dropdown">
+          <a href="about.html">Sobre mí</a>
+          <ul class="dropdown-menu">
+            <li><a href="../about.html#presentacion">Presentación</a></li>
+            <li><a href="../about.html#gustos">Cosas Favoritas</a></li>
+            <li><a href="../about.html#videoPresentacion">Video Presentación</a></li>
+            <li><a href="../about.html#miGaleria">Galería</a></li>
+            <li><a href="../about.html#mapaDeSuenos">Mapa de Sueños</a></li>
+          </ul>
+        </li>
+        <!-- Categoría: Galería de Vida -->
+        <li class="dropdown">
+          <a href="public/galeriavida.html#inicio">Galería Vida</a>
+          <ul class="dropdown-menu">
+            <li><a href="public/galeriavida.html#inicio">Inicio</a></li>
+            <li><a href="public/galeriavida.html#galeria">Galería</a></li>
+            <li><a href="public/galeriavida.html#diario-fotografico">Diario</a></li>
+            <li><a href="public/galeriavida.html#linea-tiempo">Línea del Tiempo</a></li>
+            <li><a href="public/galeriavida.html#mapa-aventuras">Mapa</a></li>
+            <li><a href="public/galeriavida.html#emociones">Mis Emociones</a></li>
+            <li><a href="public/galeriavida.html#recuerdos">Recuerdos</a></li>
+          </ul>
+        </li>
+        <!-- Categoría sin submenú -->
+        <li><a href="contact.html">Contáctame</a></li>
+      </ul>
+      <!-- Botón de menú hamburguesa (aparece en móviles) -->
+      <button class="nav-toggle" id="navToggle">☰</button>
+    </nav>
+    <!-- Barra de progreso para scroll -->
+    <div class="header-progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </header>
+  
+
+  <main class="about-container">
+    <!-- 1. Presentación Personal -->
+    <!-- Sección Interactiva: Presentación – Sammy -->
+<!-- Sección Interactiva Presentación – Sammy -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Sección Interactiva Presentación – Sammy -->
+<!-- Sección Interactiva Presentación – Sammy -->
+<section id="presentacion" class="presentacion-magica">
+  <!-- Saludo Personalizado -->
+  <h1 id="saludoPersonalizado">¡Hola, soy Sammy! 🌈</h1>
+  
+  <!-- Botón Interactivo para reproducir Bienvenida -->
+  <button id="btnReproducirSaludo" class="presentacion-btn">▶️ Reproducir Bienvenida</button>
+  
+  <!-- Contenedor del Avatar Personalizable -->
+  <div class="avatar-contenedor">
+    <h2>👗 Personaliza tu avatar:</h2>
+    <div class="avatar-editor">
+      <!-- Imagen base del avatar -->
+      <img id="avatarBase" src="imagenes/avatar/base.png" alt="Avatar de Sammy">
+      <!-- Controles de personalización -->
+      <div class="avatar-controles">
+        <label for="cabelloSelector">Cabello:
+          <select id="cabelloSelector">
+            <option value="rubio">Rubio</option>
+            <option value="castaño">Castaño</option>
+            <option value="rosado">Rosado</option>
+          </select>
+        </label>
+        <label for="ropaSelector">Vestido:
+          <select id="ropaSelector">
+            <option value="princesa">Princesa</option>
+            <option value="aventurera">Aventurera</option>
+            <option value="dibujante">Dibujante</option>
+          </select>
+        </label>
+        <label for="accesorioSelector">Accesorio:
+          <select id="accesorioSelector">
+            <option value="sombrero">Sombrero</option>
+            <option value="diadema">Diadema</option>
+            <option value="nada">Sin accesorio</option>
+          </select>
+        </label>
+        <button id="guardarAvatarBtn">💾 Guardar Avatar</button>
+      </div>
+    </div>
+    <!-- Lista de Avatares Predefinidos -->
+    <div class="avatar-lista">
+      <h3>Elige un avatar predefinido:</h3>
+      <div class="avatar-opciones">
+        <img src="imagenes/vaca.png" alt="Avatar 1" class="avatar-opcion">
+        <img src="imagenes/zorro.png" alt="Avatar 2" class="avatar-opcion">
+        <img src="imagenes/oveja.png" alt="Avatar 3" class="avatar-opcion">
+        <img src="imagenes/tortuga.png" alt="Avatar 4" class="avatar-opcion">
+      </div>
+    </div>
+  </div>
+  
+  <!-- Selector de Emociones -->
+  <div class="emociones">
+    <h2>¿Cómo me siento hoy? 😄</h2>
+    <div class="emociones-botones">
+      <button class="emocion-btn" data-estado="feliz">😊 Feliz</button>
+      <button class="emocion-btn" data-estado="creativa">🎨 Creativa</button>
+      <button class="emocion-btn" data-estado="soñadora">🌙 Soñadora</button>
+      <button class="emocion-btn" data-estado="aventurera">🧭 Aventurera</button>
+      <button class="emocion-btn" data-estado="emocionada">😃 Emocionada</button>
+    </div>
+  </div>
+  
+  <!-- Contenedor de Efectos Visuales Según Estado -->
+  <div id="estadoVisual" class="estado-efecto">
+    <!-- Cambios dinámicos se aplicarán aquí -->
+  </div>
+  
+  <!-- Datos Curiosos -->
+  <div class="datos-curiosos">
+    <button id="btnMostrarDato" class="presentacion-btn">Mostrar Dato Curioso</button>
+    <div id="datoCurioso" class="dato-curioso hidden">¡Sabías que a los 5 años hice mi primer gran dibujo mural!</div>
+  </div>
+  
+  <!-- Herramienta de Dibujo Interactivo -->
+  <div class="dibujo-interactivo">
+    <h2>Dibuja tu mensaje mágico</h2>
+    <canvas id="canvasDibujo"></canvas>
+    <button id="limpiarCanvasBtn">Limpiar Dibujo</button>
+  </div>
+  
+  <!-- Área de Firma Mágica -->
+  <div class="firma-magica">
+    <h2>Deja tu firma</h2>
+    <textarea id="firmaTexto" placeholder="Escribe tu nombre o un mensaje..."></textarea>
+    <button id="guardarFirmaBtn">Guardar Firma ✒️</button>
+    <div id="firmaFeedback" class="firma-feedback hidden">¡Guardado con amor!</div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+    <!-- 2. Cosas que me encantan -->
+    <!-- Sección Interactiva #gustos – Mis Cosas Favoritas -->
+<section id="gustos" class="gustos-section">
+  <h2 class="gustos-titulo">💖 Mis Cosas Favoritas</h2>
+  
+  <!-- A. Tarjetas Flip: Top de Gustos de Sammy -->
+  <div class="gustos-flip-cards">
+    <!-- Tarjeta: Comida favorita -->
+    <div class="gustos-card" data-categoria="comida" data-detalle="Helado de fresa 🍓: Mi comida favorita por su frescura y dulzura.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-ice-cream"></i>
+          <p>Helado de fresa</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡Mi comida favorita por su frescura y dulzura!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta: Animal favorito -->
+    <div class="gustos-card" data-categoria="animal" data-detalle="Gato 🐱: Amo a los gatitos, son tiernos y juguetones.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-cat"></i>
+          <p>Gato</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡Amo a los gatitos, son tiernos y juguetones!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta: Color favorito -->
+    <div class="gustos-card" data-categoria="color" data-detalle="Morado 💜: Es mi color mágico que inspira creatividad.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-palette"></i>
+          <p>Morado</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡Es mi color mágico que inspira creatividad!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta: Canción favorita -->
+    <div class="gustos-card" data-categoria="cancion" data-detalle="Let It Go ❄️: La canción que me hace sentir libre y poderosa.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-music"></i>
+          <p>Let It Go</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡La canción que me hace sentir libre y poderosa!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta: Libro favorito -->
+    <div class="gustos-card" data-categoria="libro" data-detalle="Matilda 📖: Un cuento que me inspira a ser valiente y curiosa.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-book"></i>
+          <p>Matilda</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡Un cuento que me inspira a ser valiente y curiosa!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta: Personaje favorito -->
+    <div class="gustos-card" data-categoria="personaje" data-detalle="Rapunzel 🌟: Su espíritu libre y aventurero me encanta.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-feather-alt"></i>
+          <p>Rapunzel</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡Su espíritu libre y aventurero me encanta!</p>
+        </div>
+      </div>
+    </div>
+    <!-- Tarjeta: Juego favorito -->
+    <div class="gustos-card" data-categoria="juego" data-detalle="Minecraft creativo 🎮: Me gusta construir y explorar mundos imaginarios.">
+      <div class="gustos-card-inner">
+        <div class="gustos-card-front">
+          <i class="fas fa-gamepad"></i>
+          <p>Minecraft</p>
+        </div>
+        <div class="gustos-card-back">
+          <p>¡Me gusta construir y explorar mundos imaginarios!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- B. Juego “Adivina mi gusto” -->
+  <div class="gustos-adivina">
+    <h2>Adivina mi gusto</h2>
+    <p>¿Cuál crees que es mi comida favorita?</p>
+    <div class="gustos-quiz">
+      <button class="quiz-option" data-respuesta="Helado de fresa">Helado de fresa</button>
+      <button class="quiz-option" data-respuesta="Pizza">Pizza</button>
+      <button class="quiz-option" data-respuesta="Helado de vainilla">Helado de vainilla</button>
+    </div>
+    <div id="quizFeedback" class="quiz-feedback hidden"></div>
+  </div>
+  
+  <!-- C. Selector de Reacciones -->
+  <div class="gustos-reacciones">
+    <h2>¿Te gusta también?</h2>
+    <button class="reaccion-btn" data-reaccion="meEncanta">¡A mí también me encanta! ❤️</button>
+    <button class="reaccion-btn" data-reaccion="interesante">Es interesante 🤔</button>
+    <button class="reaccion-btn" data-reaccion="noProbado">Nunca lo he probado 🙈</button>
+    <div class="reacciones-contador">
+      <span id="contadorMeEncanta">0</span> ❤️  
+      <span id="contadorInteresante">0</span> 🤔  
+      <span id="contadorNoProbado">0</span> 🙈  
+    </div>
+  </div>
+  
+  <!-- D. Audio de Gustos -->
+  <div class="gustos-audio">
+    <h2>Escucha por qué me encantan</h2>
+    <button id="reproducirGustos" class="gustos-btn-audio">▶️ Reproducir descripción</button>
+    <audio id="audioGustos">
+      <source src="audios/gustosSammy.mp3" type="audio/mp3">
+      Tu navegador no soporta audio.
+    </audio>
+  </div>
+  
+  <!-- E. Encuesta Rápida -->
+  <div class="gustos-encuesta">
+    <h2>¿Cuál es tu favorito?</h2>
+    <div class="encuesta-opciones">
+      <img src="imagenes/gustos/helado.jpg" alt="Helado" data-opcion="Helado">
+      <img src="imagenes/gustos/gato.jpg" alt="Gato" data-opcion="Gato">
+      <img src="imagenes/gustos/morado.jpg" alt="Morado" data-opcion="Morado">
+      <img src="imagenes/gustos/letItGo.jpg" alt="Let It Go" data-opcion="Let It Go">
+      <img src="imagenes/gustos/matilda.jpg" alt="Matilda" data-opcion="Matilda">
+      <img src="imagenes/gustos/rapunzel.jpg" alt="Rapunzel" data-opcion="Rapunzel">
+      <img src="imagenes/gustos/minecraft.jpg" alt="Minecraft" data-opcion="Minecraft">
+    </div>
+    <div id="encuestaResultado" class="encuesta-resultado hidden">
+      <!-- Resultados de la encuesta se mostrarán aquí -->
+    </div>
+  </div>
+</section>
+
+
+   <!-- Sección Interactiva #videoPresentacion -->
+<section id="videoPresentacion" class="videoPresentacion-section">
+  <!-- Encabezado de Bienvenida para Video -->
+  <h2 class="videoPresentacion-titulo">🎥 ¡Conóceme en video!</h2>
+  <p class="videoPresentacion-intro">Descubre mi mundo y déjame contarte mis sueños y aventuras.</p>
+  
+  <!-- Contenedor del Video y Subtítulos -->
+  <div class="videoPresentacion-video-container">
+    <video id="videoSammy" class="videoPresentacion-video" controls>
+      <source src="videos/sammy_video.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+    <!-- Botón de Pantalla Completa -->
+    <button id="fullscreenBtn" class="videoPresentacion-fullscreen-btn">Pantalla Completa</button>
+    <!-- Contenedor para Subtítulos tipo Karaoke -->
+    <div id="videoSubtitulos" class="videoPresentacion-subtitulos"></div>
+  </div>
+  
+  <!-- Reacciones en Vivo -->
+  <div class="videoPresentacion-reacciones">
+    <button class="videoPresentacion-reaccion-btn" data-reaccion="lindo">¡Qué lindo! 🥰</button>
+    <button class="videoPresentacion-reaccion-btn" data-reaccion="reir">Me hizo reír 😂</button>
+    <button class="videoPresentacion-reaccion-btn" data-reaccion="inspirador">¡Inspirador! 💡</button>
+  </div>
+  
+  <!-- Encuesta Post-Video -->
+  <div class="videoPresentacion-encuesta">
+    <h3 class="videoPresentacion-encuesta-titulo">¿Qué fue lo que más te gustó del video?</h3>
+    <div class="encuesta-opciones">
+      <button class="encuesta-btn" data-opcion="mensaje">El mensaje</button>
+      <button class="encuesta-btn" data-opcion="voz">Su voz</button>
+      <button class="encuesta-btn" data-opcion="dibujos">Los dibujos</button>
+      <button class="encuesta-btn" data-opcion="sonrisa">Su sonrisa</button>
+    </div>
+    <div id="encuestaResultado" class="videoPresentacion-encuesta-resultado hidden"></div>
+  </div>
+  
+  <!-- Comentario Mágico -->
+  <div class="videoPresentacion-comentario">
+    <h3 class="videoPresentacion-comentario-titulo">Deja una estrella de mensaje</h3>
+    <textarea id="comentarioTexto" class="videoPresentacion-comentario-texto" placeholder="Escribe tu mensaje..."></textarea>
+    <button id="guardarComentarioBtn" class="videoPresentacion-comentario-btn">Enviar Mensaje ✨</button>
+  </div>
+</section>
+
+
+    <!-- 4. Galería Visual -->
+   <!-- Sección Interactiva #miGaleria – Galería de Creaciones de Sammy -->
+<section id="miGaleria" class="miGaleria-section">
+  <!-- A. Encabezado animado -->
+  <header class="miGaleria-header">
+    <h2 class="miGaleria-titulo">🖼️ Bienvenido a mi Galería Creativa</h2>
+    <p class="miGaleria-subtitulo">Aquí viven mis dibujos, ideas, invenciones y colores</p>
+  </header>
+  
+  <!-- B. Filtro de categorías -->
+  <div class="miGaleria-filtros">
+    <button class="miGaleria-filtro activo" data-filtro="todos">Todos</button>
+    <button class="miGaleria-filtro" data-filtro="dibujos">🎨 Dibujos</button>
+    <button class="miGaleria-filtro" data-filtro="proyectos">📐 Proyectos escolares</button>
+    <button class="miGaleria-filtro" data-filtro="inventos">🔬 Inventos</button>
+    <button class="miGaleria-filtro" data-filtro="ideas">💡 Ideas locas</button>
+    <button class="miGaleria-filtro" data-filtro="comics">📘 Cómics</button>
+  </div>
+  
+  <!-- C. Galería de tarjetas animadas -->
+  <div class="miGaleria-grid">
+    <!-- Ejemplo de Tarjeta -->
+    <div class="miGaleria-card" data-categoria="dibujos" data-detalle="Este dibujo lo hice imaginando un mundo lleno de magia y colores vibrantes.">
+      <img src="imagenes/creaciones/dibujo1.jpg" alt="Dibujo 1">
+      <div class="miGaleria-card-overlay">
+        <button class="miGaleria-btn-vermas">Ver más</button>
+      </div>
+    </div>
+    <div class="miGaleria-card" data-categoria="proyectos" data-detalle="Un proyecto escolar donde puse a prueba mi creatividad con materiales reciclados.">
+      <img src="imagenes/creaciones/proyecto1.jpg" alt="Proyecto Escolar">
+      <div class="miGaleria-card-overlay">
+        <button class="miGaleria-btn-vermas">Ver más</button>
+      </div>
+    </div>
+    <div class="miGaleria-card" data-categoria="inventos" data-detalle="Un invento loco que combina la ciencia y la diversión para crear algo único.">
+      <img src="imagenes/creaciones/invento1.jpg" alt="Invento">
+      <div class="miGaleria-card-overlay">
+        <button class="miGaleria-btn-vermas">Ver más</button>
+      </div>
+    </div>
+    <div class="miGaleria-card" data-categoria="ideas" data-detalle="Una idea loca que me hizo pensar en un mundo sin límites.">
+      <img src="imagenes/creaciones/idea1.jpg" alt="Idea">
+      <div class="miGaleria-card-overlay">
+        <button class="miGaleria-btn-vermas">Ver más</button>
+      </div>
+    </div>
+    <div class="miGaleria-card" data-categoria="comics" data-detalle="Mi cómic personal, una historia llena de humor y aventura.">
+      <img src="imagenes/creaciones/comic1.jpg" alt="Cómic">
+      <div class="miGaleria-card-overlay">
+        <button class="miGaleria-btn-vermas">Ver más</button>
+      </div>
+    </div>
+    <!-- Se pueden agregar más tarjetas según las obras de Sammy -->
+  </div>
+  
+  <!-- D. Visor mágico de creaciones (Modal) -->
+  <div id="miGaleriaModal" class="miGaleria-modal hidden">
+    <div class="miGaleria-modal-content">
+      <span class="miGaleria-modal-close">&times;</span>
+      <img id="modalImagen" src="" alt="Obra ampliada">
+      <p id="modalDetalle" class="miGaleria-modal-detalle"></p>
+      <div class="miGaleria-modal-acciones">
+        <button class="miGaleria-modal-btn" id="btnInspirado">⭐ Me inspiró</button>
+        <button class="miGaleria-modal-btn" id="btnGuardarObra">📌 Lo guardaré</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- E. Modo Presentación Automática -->
+  <div class="miGaleria-presentacion">
+    <button id="btnSlideshow" class="miGaleria-btn-slideshow">🎞️ Ver presentación mágica</button>
+  </div>
+  
+  <!-- F. Galería Animada Horizontal (Carrusel) -->
+  <div class="miGaleria-carrusel">
+    <div class="miGaleria-carrusel-inner">
+      <img src="imagenes/creaciones/dibujo1.jpg" alt="Obra 1">
+      <img src="imagenes/creaciones/proyecto1.jpg" alt="Obra 2">
+      <img src="imagenes/creaciones/invento1.jpg" alt="Obra 3">
+      <img src="imagenes/creaciones/idea1.jpg" alt="Obra 4">
+      <img src="imagenes/creaciones/comic1.jpg" alt="Obra 5">
+      <!-- Se pueden agregar más imágenes para el carrusel -->
+    </div>
+    <button class="miGaleria-carrusel-btn" id="carruselPrev">◀</button>
+    <button class="miGaleria-carrusel-btn" id="carruselNext">▶</button>
+  </div>
+</section>
+
+
+
+<!-- Sección Interactiva #mapaDeSuenos – Galería de Sueños -->
+<section id="mapaDeSuenos" class="mapaDeSuenos-section">
+  <!-- A. Encabezado Encantado -->
+  <header class="mapaDeSuenos-header">
+    <h2 class="mapaDeSuenos-titulo">🗺️ Mi Mapa de Sueños Locos</h2>
+    <p class="mapaDeSuenos-subtitulo">
+      Aquí guardo todos los lugares que quiero visitar y mis metas soñadas.
+    </p>
+    <!-- Búsqueda interactiva con resaltado -->
+    <input type="text" id="mapaDeSuenos-busqueda" class="mapaDeSuenos-busqueda" placeholder="Buscar sueño...">
+    <!-- Botón Modo Exploración -->
+    <button id="btnModoExploracion" class="mapaDeSuenos-btn-explora">Modo Exploración</button>
+  </header>
+  
+  <!-- C. Mapa Interactivo con Pines Mágicos -->
+  <div class="mapaDeSuenos-mapa">
+    <img src="imagenes/mapas/mapa-ilustrado.jpg" alt="Mapa de Sueños" class="mapaDeSuenos-imagen">
+    <!-- Pines mágicos con tooltip y animación -->
+    <div class="mapaDeSuenos-pin" 
+         data-titulo="Disneyland (EE.UU.)" 
+         data-descripcion="¡Sueño con ir a Disneyland y vivir aventuras mágicas!" 
+         data-imagen="imagenes/mapas/disneyland.jpg" 
+         style="top: 30%; left: 40%;">✨
+      <span class="mapaDeSuenos-tooltip">Disneyland</span>
+    </div>
+    <div class="mapaDeSuenos-pin" 
+         data-titulo="Torre Eiffel (París)" 
+         data-descripcion="Imagino una visita a París y disfrutar la vista desde la Torre Eiffel." 
+         data-imagen="imagenes/mapas/paris.jpg" 
+         style="top: 25%; left: 70%;">✨
+      <span class="mapaDeSuenos-tooltip">Torre Eiffel</span>
+    </div>
+    <div class="mapaDeSuenos-pin" 
+         data-titulo="Machu Picchu (Perú)" 
+         data-descripcion="Explorar Machu Picchu y conectar con la historia antigua." 
+         data-imagen="imagenes/mapas/machu_picchu.jpg" 
+         style="top: 60%; left: 20%;">✨
+      <span class="mapaDeSuenos-tooltip">Machu Picchu</span>
+    </div>
+    <div class="mapaDeSuenos-pin" 
+         data-titulo="Bosques de Japón" 
+         data-descripcion="Un paseo por los misteriosos bosques de Japón me inspira." 
+         data-imagen="imagenes/mapas/japon.jpg" 
+         style="top: 70%; left: 50%;">✨
+      <span class="mapaDeSuenos-tooltip">Bosques de Japón</span>
+    </div>
+    <div class="mapaDeSuenos-pin" 
+         data-titulo="Planeta Imaginario" 
+         data-descripcion="He creado un mundo de fantasía donde todo es posible." 
+         data-imagen="imagenes/mapas/planeta.jpg" 
+         style="top: 80%; left: 10%;">✨
+      <span class="mapaDeSuenos-tooltip">Planeta Imaginario</span>
+    </div>
+  </div>
+  
+  <!-- D. Modal "Sueño Desbloqueado" -->
+  <div id="mapaDeSuenos-modal" class="mapaDeSuenos-modal hidden">
+    <div class="mapaDeSuenos-modal-content">
+      <span class="mapaDeSuenos-modal-close">&times;</span>
+      <img id="mapaDeSuenos-modal-imagen" src="" alt="Detalle del sueño">
+      <h3 id="mapaDeSuenos-modal-titulo"></h3>
+      <p id="mapaDeSuenos-modal-descripcion"></p>
+      <div class="mapaDeSuenos-modal-acciones">
+        <button class="mapaDeSuenos-modal-btn" id="mapaDeSuenos-btn-favorito">⭐ Me inspiró</button>
+        <button class="mapaDeSuenos-modal-btn" id="mapaDeSuenos-btn-ver">🔭 Ver en Google Maps</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- E. Carrusel de Metas de Vida -->
+  <div class="mapaDeSuenos-carrusel">
+    <button class="mapaDeSuenos-carrusel-btn" id="carruselPrev">◀</button>
+    <div class="mapaDeSuenos-carrusel-inner">
+      <div class="mapaDeSuenos-metacard">
+        <i class="fas fa-microphone"></i>
+        <p>Ser cantante 🎤</p>
+      </div>
+      <div class="mapaDeSuenos-metacard">
+        <i class="fas fa-book"></i>
+        <p>Escribir un libro infantil 📚</p>
+      </div>
+      <div class="mapaDeSuenos-metacard">
+        <i class="fas fa-cat"></i>
+        <p>Tener un gato parlante 🐱</p>
+      </div>
+      <div class="mapaDeSuenos-metacard">
+        <i class="fas fa-gamepad"></i>
+        <p>Crear un videojuego 🎮</p>
+      </div>
+      <div class="mapaDeSuenos-metacard">
+        <i class="fas fa-graduation-cap"></i>
+        <p>Dibujar un cómic intergaláctico 👩‍🚀</p>
+      </div>
+    </div>
+    <button class="mapaDeSuenos-carrusel-btn" id="carruselNext">▶</button>
+  </div>
+  
+  <!-- F. Activador de "Sueño del Día" -->
+  <div class="mapaDeSuenos-sueño-del-dia">
+    <button id="btnSueñoDelDia" class="mapaDeSuenos-btn-sueño">🎈 Ver el sueño del día</button>
+    <div id="sueñoDelDiaTexto" class="mapaDeSuenos-sueño-texto hidden"></div>
+  </div>
+  
+  <!-- G. Diario de Sueños -->
+  <div class="mapaDeSuenos-diario">
+    <h2>Diario de Sueños</h2>
+    <textarea id="diarioTexto" placeholder="Escribe tu sueño..."></textarea>
+    <button id="guardarDiarioBtn" class="mapaDeSuenos-btn-diario">Guardar Sueño</button>
+    <div id="ultimoSueño" class="mapaDeSuenos-ultimo-sueño"></div>
+    <button id="resetDiarioBtn" class="mapaDeSuenos-btn-diario">Reset Diario</button>
+  </div>
+</section>
+
+
+<!-- Sección Mis Secretos - Versión Ultra Actualizada -->
+<section id="secretos" class="secretos-container">
+  <!-- Título Encantado -->
+  <header class="secretos-header">
+    <h1>🔐 Mis Secretos Mágicos</h1>
+    <p>¡Shh! No todos los secretos se gritan… algunos brillan desde adentro.</p>
+  </header>
+  
+  <!-- Barra Superior: Modo Oscuro/Claro -->
+  <div class="secretos-topbar">
+    <button id="secretos_darkToggle" class="secretos-toggle">Modo Oscuro</button>
+  </div>
+  
+  <!-- Navegación por Pestañas -->
+  <nav class="secretos-nav">
+    <button class="secretos-tab activo" data-tab="cofres">Cofres & Tarjetas</button>
+    <button class="secretos-tab" data-tab="caja">Caja de Pensamientos</button>
+    <button class="secretos-tab" data-tab="interactivos">Interacciones</button>
+    <button class="secretos-tab" data-tab="libro">Libro de Secretos</button>
+  </nav>
+  
+  <!-- Contenido de Pestañas -->
+  <div class="secretos-tab-content">
+    
+    <!-- Pestaña 1: Cofres y Tarjetas -->
+    <div class="secretos-tab-pane" id="secretos-cofres">
+      <div class="secretos-chests">
+        <div class="secretos-chest" data-secret="Secreto revelado: El universo guarda enigmas.">
+          <button class="secretos-openChest">Abrir Cofre</button>
+        </div>
+        <div class="secretos-chest" data-secret="Secreto revelado: La magia está en cada rincón.">
+          <button class="secretos-openChest">Abrir Cofre</button>
+        </div>
+      </div>
+      <div class="secretos-cards">
+        <div class="secretos-card">
+          <div class="secretos-card-front">Pasa el mouse o toca</div>
+          <div class="secretos-card-back">"Una vez intenté enseñarle a una piedra cómo hacer volteretas. No funcionó." 🪨🤸‍♀️</div>
+        </div>
+        <div class="secretos-card">
+          <div class="secretos-card-front">Pasa el mouse o toca</div>
+          <div class="secretos-card-back">"Una vez le eché perfume al uniforme porque no quería cambiarlo. Y dije: ‘Está limpio, huele bonito’. Me creyeron." 🧼👕
+
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pestaña 2: Caja de Pensamientos -->
+    <div class="secretos-tab-pane" id="secretos-caja" style="display:none;">
+      <div class="secretos-box">
+        <textarea id="secretos_textarea" placeholder="Escribe tu secreto aquí..."></textarea>
+        <button id="secretos_saveBtn">💾 Guardar para mi yo del futuro</button>
+      </div>
+    </div>
+    
+    <!-- Pestaña 3: Interacciones Avanzadas -->
+    <div class="secretos-tab-pane" id="secretos-interactivos" style="display:none;">
+      <div class="secretos-riddle">
+        <p>Acertijo: ¿Qué tiene orejas, no escucha, pero siempre está en el salón?</p>
+        <input type="text" id="secretos_riddleInput" placeholder="Tu respuesta">
+        <button id="secretos_riddleBtn">Desbloquear Secreto</button>
+        <div id="secretos_riddleResult"></div>
+      </div>
+      <div class="secretos-timer">
+        <p>Programa un mensaje secreto:</p>
+        <input type="text" id="secretos_timedMessage" placeholder="Escribe tu mensaje">
+        <input type="number" id="secretos_timedDelay" placeholder="Segundos">
+        <button id="secretos_timerBtn">Programar Mensaje</button>
+        <div id="secretos_timerResult"></div>
+      </div>
+      <div class="secretos-voice">
+        <p>Secreto en Voz:</p>
+        <button id="secretos_voiceRecordBtn">Grabar Secreto</button>
+        <button id="secretos_voicePlayBtn">Reproducir Secreto Grabado</button>
+        <div id="secretos_voiceStatus"></div>
+      </div>
+    </div>
+    
+    <!-- Pestaña 4: Libro de Secretos -->
+    <div class="secretos-tab-pane" id="secretos-libro" style="display:none;">
+      <div class="secretos-libro-top">
+        <input type="text" id="secretos_libroFilter" placeholder="Filtrar secretos...">
+      </div>
+      <div id="secretos_libroEntries">
+        <!-- Aquí se insertan las entradas del Libro de Secretos -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mensajes Flotantes -->
+  <div id="secretos_floatingMessages"></div>
+</section>
+
+<!-- Modal para Detalle y Edición de Entradas -->
+<div id="secretos_modal" class="secretos-modal" style="display:none;">
+  <div class="secretos-modal-content">
+    <span class="secretos-close">&times;</span>
+    <div id="secretos_modalBody"></div>
+    <div class="secretos-modal-actions">
+      <button id="secretos_modalEdit">Editar</button>
+      <button id="secretos_modalDelete">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  <!-- Sección Interactiva #secretos – Mis Secretos Mágicos -->
+<!-- Sección Interactiva #secretos – Mis Secretos Mágicos -->
+
+
+   <!-- Sección Mi Rutina - Versión Definitiva para la niña de 10 años -->
+<section id="miRutina" class="miRutina-container">
+  <!-- Encabezado con Frase Motivadora -->
+  <header class="miRutina-header">
+    <h1>🕰️ Mi Rutina Mágica</h1>
+    <p class="miRutina-subtitle">Con pequeños pasos mágicos… ¡hago que cada día brille!</p>
+  </header>
+  
+  <!-- Reloj Mágico del Día -->
+  <div class="miRutina-clockContainer">
+    <div id="miRutina_clock" class="miRutina-clock">00:00:00</div>
+    <div id="miRutina_greeting" class="miRutina-greeting">Bienvenida a un día encantado</div>
+  </div>
+  
+  <!-- Música Ambiental -->
+  <div class="miRutina-ambient">
+    <audio id="miRutina_ambientAudio" src="/audios/rutina/ambiente.mp3" loop></audio>
+    <button id="miRutina_musicToggle" class="miRutina-musicToggle">Encender Música Ambiental</button>
+  </div>
+  
+  <!-- Lista de Rutina Dividida por Momentos del Día -->
+  <div class="miRutina-tasks">
+    <!-- Mañana -->
+    <div class="miRutina-section">
+      <h2>☀️ Mañana</h2>
+      <div id="miRutina_tasks_morning" class="miRutina-taskList"></div>
+    </div>
+    <!-- Tarde -->
+    <div class="miRutina-section">
+      <h2>🎨 Tarde</h2>
+      <div id="miRutina_tasks_afternoon" class="miRutina-taskList"></div>
+    </div>
+    <!-- Noche -->
+    <div class="miRutina-section">
+      <h2>🌙 Noche</h2>
+      <div id="miRutina_tasks_night" class="miRutina-taskList"></div>
+    </div>
+  </div>
+  
+  <!-- Editor de Rutina -->
+  <div class="miRutina-editor">
+    <h2>Editor de Rutina</h2>
+    <textarea id="miRutina_taskInput" placeholder="Nueva actividad..."></textarea>
+    <select id="miRutina_taskTime">
+       <option value="mañana">Mañana</option>
+       <option value="tarde">Tarde</option>
+       <option value="noche">Noche</option>
+    </select>
+    <button id="miRutina_addTaskBtn">Agregar Actividad</button>
+    <button id="miRutina_resetBtn">🔄 Restablecer a rutina original</button>
+  </div>
+  
+  <!-- Mi Meta del Día -->
+  <div class="miRutina-goal">
+    <h2>Mi Meta del Día</h2>
+    <input type="text" id="miRutina_goalInput" placeholder="Escribe tu meta mágica...">
+    <button id="miRutina_goalBtn">Marcar Meta como Hecha</button>
+    <div id="miRutina_goalStatus"></div>
+  </div>
+  
+  <!-- Diario de Logros -->
+  <div class="miRutina-log">
+    <h2>Diario de Logros</h2>
+    <div id="miRutina_logSummary"></div>
+  </div>
+  
+  <!-- Botón de "Mi Día Mágico" -->
+  <div class="miRutina-magic">
+    <button id="miRutina_magicBtn">Mi Día Mágico</button>
+    <div id="miRutina_magicMessage"></div>
+  </div>
+</section>
+
+<!-- Modal Opcional para Edición Detallada de Actividades -->
+<div id="miRutina_modal" class="miRutina-modal" style="display:none;">
+  <div class="miRutina-modalContent">
+    <span class="miRutina-close">&times;</span>
+    <div id="miRutina_modalBody"></div>
+    <div class="miRutina-modalActions">
+      <button id="miRutina_modalEdit">Editar</button>
+      <button id="miRutina_modalDelete">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+
+    <!-- 8. Cosas que estoy Aprendiendo -->
+   <!-- Sección #cosasQueEstoyAprendiendo - Bitácora Encantada de Conocimientos -->
+<section id="cosasQueEstoyAprendiendo" class="cosasAprendiendo-container">
+  <!-- Encabezado Mágico -->
+  <header class="cosasAprendiendo-header">
+    <h1>📖 Cosas que estoy aprendiendo</h1>
+    <p class="cosasAprendiendo-subtitle">Cada día descubro algo nuevo, y aquí guardo mis descubrimientos más mágicos</p>
+  </header>
+  
+  <!-- Tarjetas de Aprendizaje -->
+  <div class="cosasAprendiendo-cards">
+    <!-- Tarjeta de ejemplo (se generan dinámicamente las demás) -->
+    <div class="cosasAprendiendo-card" data-id="1">
+      <div class="cosasAprendiendo-cardFront">
+        <div class="cosasAprendiendo-icon">✍️</div>
+        <div class="cosasAprendiendo-description">Estoy practicando caligrafía con plumones de colores</div>
+        <div class="cosasAprendiendo-progress">
+          <span>⭐</span><span>⭐</span>
+        </div>
+      </div>
+      <div class="cosasAprendiendo-cardBack">
+        <button class="cosasAprendiendo-noteBtn">📝 Añadir nota</button>
+        <button class="cosasAprendiendo-achieveBtn">🎉 ¡Lo logré!</button>
+      </div>
+    </div>
+    <!-- Aquí se insertarán más tarjetas desde JavaScript -->
+  </div>
+  
+  <!-- Tabla de Temas por Categorías -->
+  <div class="cosasAprendiendo-categories">
+    <h2>Categorías de Aprendizaje</h2>
+    
+    <div class="cosasAprendiendo-category" data-category="matematicas">
+      <h3>📐 Matemáticas</h3>
+      <div class="cosasAprendiendo-categoryContent">
+        <!-- Temas de matemáticas se llenan dinámicamente -->
+      </div>
+    </div>
+    
+    <div class="cosasAprendiendo-category" data-category="lectura">
+      <h3>📚 Lectura y escritura</h3>
+      <div class="cosasAprendiendo-categoryContent"></div>
+    </div>
+    
+    <div class="cosasAprendiendo-category" data-category="arte">
+      <h3>🎨 Arte y creatividad</h3>
+      <div class="cosasAprendiendo-categoryContent"></div>
+    </div>
+    
+    <div class="cosasAprendiendo-category" data-category="naturaleza">
+      <h3>🌍 Naturaleza y ciencia</h3>
+      <div class="cosasAprendiendo-categoryContent"></div>
+    </div>
+    
+    <div class="cosasAprendiendo-category" data-category="tecnologia">
+      <h3>💻 Tecnología y programación</h3>
+      <div class="cosasAprendiendo-categoryContent"></div>
+    </div>
+    
+    <div class="cosasAprendendiendo-category" data-category="curiosidades">
+      <h3>🧠 Curiosidades y preguntas</h3>
+      <div class="cosasAprendiendo-categoryContent"></div>
+    </div>
+  </div>
+  
+  <!-- Diario de Aprendizajes -->
+  <div class="cosasAprendiendo-diary">
+    <h2>Diario de Aprendizajes</h2>
+    <textarea id="cosasAprendiendo_diaryInput" placeholder="Escribe lo que aprendiste hoy..."></textarea>
+    <div id="cosasAprendiendo_diaryEntries"></div>
+  </div>
+  
+  <!-- Mini Metas de Aprendizaje -->
+  <div class="cosasAprendiendo-goals">
+    <h2>Mini Metas de Aprendizaje</h2>
+    <div class="cosasAprendiendo-goalItem" data-goal-id="1">
+      <div class="cosasAprendiendo-goalText">Dominar las tablas del 7</div>
+      <progress class="cosasAprendiendo-goalProgress" value="0" max="100"></progress>
+      <button class="cosasAprendiendo-completeGoalBtn">Completar</button>
+    </div>
+    <div class="cosasAprendiendo-goalItem" data-goal-id="2">
+      <div class="cosasAprendiendo-goalText">Leer 3 cuentos esta semana</div>
+      <progress class="cosasAprendiendo-goalProgress" value="0" max="100"></progress>
+      <button class="cosasAprendiendo-completeGoalBtn">Completar</button>
+    </div>
+    <div class="cosasAprendiendo-goalItem" data-goal-id="3">
+      <div class="cosasAprendiendo-goalText">Aprender 5 palabras en inglés</div>
+      <progress class="cosasAprendiendo-goalProgress" value="0" max="100"></progress>
+      <button class="cosasAprendiendo-completeGoalBtn">Completar</button>
+    </div>
+  </div>
+  
+  <!-- Reto Mágico Semanal -->
+  <div class="cosasAprendiendo-challenge">
+    <h2>Reto Mágico Semanal</h2>
+    <div id="cosasAprendiendo_challengeText">Investiga por qué el cielo es azul</div>
+    <button id="cosasAprendiendo_completeChallengeBtn">Marcar Reto como Completado</button>
+    <div id="cosasAprendiendo_challengeStatus"></div>
+  </div>
+  
+  <!-- Funciones Extras -->
+  <div class="cosasAprendiendo-extras">
+    <button id="cosasAprendiendo_addTopicBtn">Quiero aprender esto</button>
+    <button id="cosasAprendiendo_randomModeBtn">Modo Aleatorio</button>
+    <div id="cosasAprendiendo_randomMessage"></div>
+  </div>
+  
+  <!-- Frase Flotante -->
+  <div id="cosasAprendiendo_floatingPhrase" class="cosasAprendiendo-floatingPhrase">
+    Cada aprendizaje es una estrella que suma a mi universo 🌌
+  </div>
+</section>
+
+
+    <!-- 9. Frase Inspiradora Final -->
+   <!-- Sección InspirAcción: Corazón de inspiración y creatividad -->
+<section id="inspiraccion" class="inspiraccion-container">
+  <!-- A. Título Mágico con Aura Flotante -->
+  <header class="inspiraccion-header">
+    <h1>✨ InspirAcción</h1>
+    <p class="inspiraccion-subtitle">Aquí guardo lo que hace brillar mi corazón y mover mis pies 💫</p>
+  </header>
+
+  <!-- B. Frases Inspiradoras Rotativas -->
+  <div class="inspiraccion-phrases">
+    <div id="inspiraccion_phraseDisplay" class="inspiraccion-phraseDisplay">
+      <!-- Frase se actualizará automáticamente -->
+      “Cada error es una pista para crecer”
+    </div>
+    <!-- Audio opcional para el cambio de frase -->
+    <audio id="inspiraccion_phraseAudio" src="/audios/musica/fraseCambio.mp3"></audio>
+  </div>
+
+  <!-- C. Canciones que me Inspiran -->
+  <div class="inspiraccion-songs">
+    <h2>Canciones que me inspiran</h2>
+    <ul class="inspiraccion-songList">
+      <li>
+        <audio controls src="/audios/musica/libreSoy.mp3"></audio>
+        <span>“Libre Soy” ❄️</span>
+        <button class="inspiraccion-explainBtn" data-explain="Esta canción me hace volar como una mariposa en invierno.">💬 ¿Por qué me inspira?</button>
+      </li>
+      <li>
+        <audio controls src="/audios/musica/colorEsperanza.mp3"></audio>
+        <span>“Color Esperanza” 🌈</span>
+        <button class="inspiraccion-explainBtn" data-explain="Me llena de energía y me recuerda que los colores de la vida son infinitos.">💬 ¿Por qué me inspira?</button>
+      </li>
+      <li>
+        <audio controls src="/audios/musica/unPocoLoco.mp3"></audio>
+        <span>“Un Poco Loco” 💀</span>
+        <button class="inspiraccion-explainBtn" data-explain="Es divertida y me anima a ser única, como yo.">💬 ¿Por qué me inspira?</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- D. Dibujos o Recuerdos Motivadores -->
+  <div class="inspiraccion-gallery">
+    <h2>Dibujos y Recuerdos Motivadores</h2>
+    <div class="inspiraccion-galleryGrid">
+      <!-- Cada imagen incluye visor con historia -->
+      <div class="inspiraccion-galleryItem" data-history="Este mural lo pinté en mi colegio, lleno de colores y sonrisas.">
+        <img src="/imagenes/inspiraccion/muralColegio.jpg" alt="Primer mural en mi colegio">
+      </div>
+      <div class="inspiraccion-galleryItem" data-history="Mi primer dibujo digital, lleno de fantasía y magia.">
+        <img src="/imagenes/inspiraccion/primerDibujo.jpg" alt="Primer dibujo digital">
+      </div>
+      <div class="inspiraccion-galleryItem" data-history="Un mensaje especial que me escribió mi mamá, lleno de amor.">
+        <img src="/imagenes/inspiraccion/mensajeMama.jpg" alt="Mensaje de mamá">
+      </div>
+    </div>
+    <!-- Visor de historia (se muestra al hacer hover o clic) -->
+    <div id="inspiraccion_imageViewer" class="inspiraccion-imageViewer" style="display:none;">
+      <span id="inspiraccion_viewerClose" class="inspiraccion-viewerClose">&times;</span>
+      <img id="inspiraccion_viewerImg" src="" alt="Detalle motivador">
+      <p id="inspiraccion_viewerText"></p>
+    </div>
+  </div>
+
+  <!-- E. Personajes que me Inspiran -->
+  <div class="inspiraccion-characters">
+    <h2>Personajes que me inspiran</h2>
+    <div class="inspiraccion-characterCards">
+      <div class="inspiraccion-characterCard" data-story="Rapunzel sueña con volar más allá de su torre.">
+        <img src="/imagenes/inspiraccion/rapunzel.jpg" alt="Rapunzel">
+        <p>🧚 Rapunzel</p>
+        <button class="inspiraccion_viewStoryBtn">📖 Ver historia</button>
+      </div>
+      <div class="inspiraccion-characterCard" data-story="Marie Curie con su valentía y curiosidad, hizo historia en la ciencia.">
+        <img src="/imagenes/inspiraccion/marieCurie.jpg" alt="Marie Curie">
+        <p>🧠 Marie Curie</p>
+        <button class="inspiraccion_viewStoryBtn">📖 Ver historia</button>
+      </div>
+      <div class="inspiraccion-characterCard" data-story="Mi gato nunca se rinde, siempre encuentra su lugar para soñar.">
+        <img src="/imagenes/inspiraccion/gato.jpg" alt="Mi gato">
+        <p>🐱 Mi gato</p>
+        <button class="inspiraccion_viewStoryBtn">📖 Ver historia</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- F. Reto de InspirAcción -->
+  <div class="inspiraccion-challenge">
+    <h2>Reto Mágico</h2>
+    <div id="inspiraccion_challengeText">Dibuja algo que te haga sonreír</div>
+    <button id="inspiraccion_completeChallengeBtn">Marcar Reto como Completado</button>
+    <div id="inspiraccion_challengeStatus"></div>
+  </div>
+
+  <!-- G. Muro de Espejitos Mágicos -->
+  <div class="inspiraccion-wall">
+    <h2>Muro de Espejitos Mágicos</h2>
+    <div id="inspiraccion_wallMessages" class="inspiraccion-wallMessages">
+      <!-- Mensajes automáticos se deslizarán aquí -->
+    </div>
+  </div>
+
+  <!-- Funciones Extras -->
+  <div class="inspiraccion-extras">
+    <button id="inspiraccion_inspireNowBtn">Inspírame ahora</button>
+    <div class="inspiraccion-diary">
+      <h2>Diario de Inspiración</h2>
+      <textarea id="inspiraccion_diaryInput" placeholder="¿Qué te inspiró hoy?"></textarea>
+      <div id="inspiraccion_diaryEntries"></div>
+    </div>
+    <!-- Sistema de Medallas: se mostrarán estrellas coleccionables -->
+    <div id="inspiraccion_medals" class="inspiraccion-medals"></div>
+  </div>
+</section>
+
+<!-- Sección #buzon: El Buzón de Estrellas de Sammy -->
+<section id="buzon" class="buzon-container">
+  <!-- A. Encabezado -->
+  <header class="buzon-header">
+    <h1>📩 Mi Buzón de Estrellas</h1>
+    <p class="buzon-subtitle">Aquí llegan mensajes mágicos que me hacen sonreír 🌟</p>
+  </header>
+
+  <!-- B. Formulario Encantado de Mensajes -->
+  <div class="buzon-form">
+    <form id="buzon_form">
+      <input type="text" id="buzon_nombre" placeholder="Nombre mágico (opcional)">
+      <textarea id="buzon_mensaje" placeholder="Escribe tu mensaje (máx. 300 caracteres)" maxlength="300"></textarea>
+      <!-- Selector gráfico de emoji -->
+      <select id="buzon_emoji">
+        <option value="😊">😊</option>
+        <option value="❤️">❤️</option>
+        <option value="🌟">🌟</option>
+        <option value="💌">💌</option>
+      </select>
+      <button type="submit" id="buzon_sendBtn">✨ Enviar mensaje a Sammy</button>
+    </form>
+    <!-- Confirmación mágica -->
+    <div id="buzon_confirmation" class="buzon-confirmation" style="display:none;">
+      ¡Mensaje enviado! <span class="buzon-star">✨</span>
+    </div>
+  </div>
+
+  <!-- C. Visor de Mensajes -->
+  <div class="buzon-gallery">
+    <h2>Mis Mensajes Mágicos</h2>
+    <div id="buzon_messages" class="buzon-messages">
+      <!-- Los mensajes (sobres, estrellas o cofres) se agregarán aquí dinámicamente -->
+    </div>
+  </div>
+
+  <!-- D. Exportador de Mensajes -->
+  <div class="buzon-export">
+    <button id="buzon_exportBtn">Exportar mensajes</button>
+  </div>
+</section>
+
+<!-- Modal para Visualizar Mensajes y Reacciones -->
+<div id="buzon_modal" class="buzon-modal" style="display:none;">
+  <div class="buzon-modalContent">
+    <span class="buzon-close">&times;</span>
+    <div id="buzon_modalBody"></div>
+    <div class="buzon-modalActions">
+      <button id="buzon_likeBtn">💖 Me gustó mucho</button>
+      <button id="buzon_favBtn">⭐ Guardar como especial</button>
+      <button id="buzon_replyBtn">🎁 Responder luego</button>
+    </div>
+  </div>
+</div>
+
+  </main>
+
+  <footer class="about-footer">
+    <p>&copy; 2025 Sammy. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Enlace a nuestro script de about -->
+  <script src="public/scripst/about.js"></script>
+</body>
+</html>

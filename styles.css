@@ -1,0 +1,1927 @@
+/* css/style.css */
+
+/* Estilos generales y fondo visual pastel */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Baloo+2:wght@400;600&family=Poppins:wght@300;400;700&display=swap');
+
+/* ===========================================
+   Importación de Fuentes
+=========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Baloo+2:wght@400;600&family=Poppins:wght@300;400;700&display=swap');
+
+/**********************************************
+  Variables Generales
+***********************************************/
+:root {
+  --primary-color: #6a1b9a;
+  --accent-color: #ab47bc;
+  --hover-color: #ce93d8;
+  --bg-gradient-start: #f8bbd0;
+  --bg-gradient-end: #fce4ec;
+  --dropdown-bg: rgba(255, 255, 255, 0.98);
+  --shadow-light: rgba(0,0,0,0.1);
+  --shadow-medium: rgba(0,0,0,0.2);
+
+  /* Para Modo Oscuro */
+  --dark-bg: #1f1f2e;
+  --dark-card: #2d2d3f;
+  --dark-text: #f1f1f1;
+  --dark-accent: #e57373;
+}
+
+/**********************************************
+  Reseteo y Estilos Globales
+***********************************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(to bottom, #f9f9f9, #dbeafe);
+  color: #333;
+  line-height: 1.8;
+  font-size: 16px;
+  min-height: 100%;
+}
+
+/* Modo Oscuro: activado al togglear la clase .dark-theme en el body */
+body.dark-theme {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/**********************************************
+  Header Fijo y Barra de Progreso
+***********************************************/
+.header-principal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  box-shadow: 0 3px 12px var(--shadow-light);
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.header-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-color);
+  transition: width 0.2s ease;
+}
+
+/**********************************************
+  Navegación y Logo
+***********************************************/
+.navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+  transition: transform 0.5s ease;
+}
+
+.logo img:hover {
+  transform: rotate(360deg);
+}
+
+.logo span {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+}
+
+/**********************************************
+  Lista de Navegación (sin puntos, más grande)
+***********************************************/
+.nav-lista {
+  display: flex;
+  list-style: none; /* Sin puntos */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-lista li {
+  position: relative;
+  margin: 0 25px; /* Más espacioso */
+}
+
+/* Enlaces principales más grandes */
+.nav-lista > li > a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3em; /* Más grande */
+  padding: 5px 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.nav-lista > li > a:hover {
+  color: var(--hover-color);
+  transform: scale(1.08);
+}
+
+/* Cuando se hace clic, se resalta */
+.nav-lista > li > a.active {
+  color: var(--accent-color);
+}
+
+.nav-lista > li > a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  animation: fadeSlide 0.5s ease forwards;
+}
+
+/**********************************************
+  Dropdown: Submenús
+***********************************************/
+/* ====== DROPDOWN (CATEGORÍAS Y SUBCATEGORÍAS) ====== */
+
+/* Contenedor principal del dropdown */
+.dropdown {
+  position: relative; /* Contenedor relativo para el submenú */
+}
+
+/* Pseudo-elemento para ampliar el área hover (zona muerta invisible) */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px; /* Ajusta este valor para cubrir el espacio muerto */
+  width: 100%;
+  height: 10px;  /* Altura del área extra para hover */
+  background: transparent; /* Invisible */
+  /* Importante: permite que el puntero interactúe en esta área */
+  pointer-events: auto;
+}
+
+/* Menú desplegable sin gaps */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Coloca el submenú justo debajo del elemento principal */
+  left: 0;
+  min-width: 220px; /* Ancho mínimo */
+  background: #fff; /* Fondo del submenú */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: 0;       /* Sin márgenes que creen huecos */
+  padding: 10px 0; /* Espacio interno vertical */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px); /* Puedes ajustar para que se alinee mejor */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  list-style: none;
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+
+/* Mantén el menú abierto mientras el mouse esté sobre el dropdown o sobre el menú */
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Estilos de cada opción en el menú */
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu a {
+  display: block;       /* Ocupa todo el ancho */
+  padding: 12px 20px;   /* Amplia área para facilitar el clic */
+  color: var(--primary-color);
+  font-size: 1.1em;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+  background: #f0f0f0;  /* Ajusta el fondo al pasar el mouse */
+  color: var(--accent-color);
+}
+
+/**********************************************
+  Menú Hamburguesa (Versión Móvil)
+***********************************************/
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-toggle:hover {
+  transform: rotate(90deg);
+}
+
+/**********************************************
+  Botón de Cambio de Tema
+***********************************************/
+.theme-toggle {
+  font-size: 0.9em;
+  background: #ffffff;
+  color: var(--primary-color);
+  margin-left: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  padding: 6px 15px;
+  transition: background 0.3s, color 0.3s, transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  transform: scale(1.07);
+}
+
+/**********************************************
+  Responsividad
+***********************************************/
+@media (max-width: 768px) {
+  .nav-lista {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+  .nav-lista.show {
+    display: flex;
+  }
+  .nav-lista li {
+    margin: 15px 0;
+  }
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/**********************************************
+  Animaciones
+***********************************************/
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+
+
+
+/* ===========================================
+   Estilos para la Sección de Inicio
+   (Prefijo: .inicio-)
+=========================================== */
+
+.inicio-section {
+  position: relative;
+  background: #e3f2fd; /* Azul cielo pastel */
+  padding: 60px 20px;
+  overflow: hidden;
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  transition: background 0.5s ease;
+}
+
+/* Fondo animado */
+.inicio-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.nube {
+  position: absolute;
+  opacity: 0.8;
+}
+.nube.nube1 {
+  top: 10%;
+  left: -10%;
+  width: 200px;
+  animation: floatNube1 20s linear infinite;
+}
+.nube.nube2 {
+  bottom: 15%;
+  right: -10%;
+  width: 250px;
+  animation: floatNube2 25s linear infinite;
+}
+.decor {
+  position: absolute;
+  opacity: 0.7;
+}
+.decor.arcoiris {
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  animation: floatArcoiris 15s ease-in-out infinite;
+}
+.decor.estrellas {
+  top: 5%;
+  right: 10%;
+  width: 150px;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+
+@keyframes floatNube1 {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(0); }
+}
+@keyframes floatNube2 {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-30px); }
+  100% { transform: translateX(0); }
+}
+@keyframes floatArcoiris {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+@keyframes twinkle {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Botón de modo día/noche */
+/* Botón flotante para modo noche/día */
+.inicio-btn-modo {
+  position: fixed;
+  bottom: 20px; /* Distancia desde la parte inferior */
+  right: 20px; /* Distancia desde la parte derecha */
+  background: #fce4ec; /* Fondo rosado claro */
+  color: #4a148c; /* Texto lavanda oscuro */
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.2em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+}
+.inicio-btn-modo:hover {
+  transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+  background: #e1bee7; /* Fondo lavanda claro */
+}
+
+/* Presentación central */
+.inicio-contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.inicio-foto {
+  width: 250px;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  animation: floatFoto 4s ease-in-out infinite;
+  cursor: pointer;
+}
+@keyframes floatFoto {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+.inicio-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #fce4ec; /* Rosado suave */
+  text-shadow: 1px 1px 2px #4a148c;
+  margin-bottom: 10px;
+  animation: slideIn 1s ease-out;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Texto con efecto typewriter */
+.inicio-frase-animada {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.5em;
+  color: #e1bee7; /* Lavanda claro */
+  margin-bottom: 30px;
+  border-right: 2px solid rgba(225,190,231,0.75);
+  white-space: nowrap;
+  overflow: hidden;
+}
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+.inicio-frase-animada {
+  animation: typewriter 3s steps(30) 1s forwards, blinkCursor 0.75s step-end infinite;
+}
+@keyframes blinkCursor {
+  0%, 50% { border-color: rgba(225,190,231,0.75); }
+  51%, 100% { border-color: transparent; }
+}
+
+/* Botones de navegación */
+.inicio-botones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.inicio-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #fce4ec;
+  color: #4a148c;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: 'Baloo 2', cursive;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.inicio-btn:hover {
+  transform: scale(1.1);
+  background: #e1bee7;
+}
+
+
+/* Control de música y voz */
+.inicio-musica {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+.inicio-btn-musica {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.2em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background 0.3s ease;
+}
+.inicio-btn-musica:hover {
+  background: #fce4ec;
+}
+
+/* Frase motivadora final */
+.inicio-frase-final {
+  margin-top: 40px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.5em;
+  color: #4a148c;
+  animation: fadeIn 1.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Confetti canvas: se muestra sobre el fondo y se limpiará dinámicamente */
+.inicio-confetti {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+/* Modo Noche: al activar se agrega la clase "modo-noche" en el body */
+/* Modo Noche: al activar se agrega la clase "modo-noche" en el body */
+body.modo-noche {
+  background: #938383; /* Fondo oscuro general */
+  color: #ffffff; /* Texto blanco general */
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Sección de inicio */
+body.modo-noche .inicio-section {
+  background: #263238; /* Azul oscuro suave */
+}
+body.modo-noche .inicio-titulo,
+body.modo-noche .inicio-frase-animada,
+body.modo-noche .inicio-frase-final {
+  color: #ffffff; /* Texto blanco */
+  text-shadow: none;
+}
+body.modo-noche .inicio-btn,
+body.modo-noche .inicio-btn-musica,
+body.modo-noche .inicio-btn-modo {
+  background: #455a64; /* Botones oscuros */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche #animatedText {
+  color: #ffffff; /* Cambia el color del texto a blanco */
+}
+
+/* Enlaces */
+body.modo-noche a {
+  color: #bb86fc; /* Enlaces en modo noche */
+}
+body.modo-noche a:hover {
+  color: #d0a9f5; /* Enlaces al pasar el mouse */
+}
+
+/* Contenedores generales */
+body.modo-noche .container {
+  background: #1e1e1e; /* Fondo oscuro para contenedores */
+  color: #ffffff; /* Texto blanco */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+}
+
+/* Tarjetas */
+body.modo-noche .card {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+}
+
+/* Botones */
+body.modo-noche button {
+  background: #455a64; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+}
+body.modo-noche button:hover {
+  background: #607d8b; /* Fondo más claro al pasar el mouse */
+}
+
+/* Listas */
+body.modo-noche ul, body.modo-noche ol {
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Encabezados */
+body.modo-noche h1, body.modo-noche h2, body.modo-noche h3, body.modo-noche h4, body.modo-noche h5, body.modo-noche h6 {
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Sección de educación */
+body.modo-noche .educacion-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .educacion-item {
+  background: #37474f; /* Fondo oscuro para ítems */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .educacion-item:hover {
+  background: #455a64; /* Fondo más claro al pasar el mouse */
+}
+
+/* Sección de familia */
+body.modo-noche .familia-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .familia-foto {
+  background: #37474f; /* Fondo oscuro para fotos */
+}
+body.modo-noche .familia-foto:hover {
+  background: #455a64; /* Fondo más claro al pasar el mouse */
+}
+
+/* Sección de sueños */
+body.modo-noche .suenos-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .suenos-boton {
+  background: #37474f; /* Fondo oscuro para botones */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .suenos-boton:hover {
+  background: #455a64; /* Fondo más claro al pasar el mouse */
+}
+
+/* Sección de blog */
+body.modo-noche .blog-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .blog-post {
+  background: #37474f; /* Fondo oscuro para posts */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .blog-post:hover {
+  background: #455a64; /* Fondo más claro al pasar el mouse */
+}
+
+/* Sección de cosas favoritas */
+body.modo-noche .favoritas-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .favorita-item {
+  background: #37474f; /* Fondo oscuro para ítems */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .favorita-item:hover {
+  background: #455a64; /* Fondo más claro al pasar el mouse */
+}
+
+/* Sección de calendario */
+body.modo-noche .calendario-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .calendario-tabla th,
+body.modo-noche .calendario-tabla td {
+  background: #37474f; /* Fondo oscuro para celdas */
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Sección de zona secreta */
+body.modo-noche .zona-section {
+  background: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .zona-btn {
+  background: #37474f; /* Fondo oscuro para botones */
+  color: #ffffff; /* Texto blanco */
+}
+body.modo-noche .zona-btn:hover {
+  background: #455a64; /* Fondo más claro al pasar el mouse */
+}
+
+
+body.modo-noche h1,
+body.modo-noche h2,
+body.modo-noche h3,
+body.modo-noche h4,
+body.modo-noche h5,
+body.modo-noche h6,
+body.modo-noche p,
+body.modo-noche span,
+body.modo-noche li,
+body.modo-noche a,
+body.modo-noche button,
+body.modo-noche input,
+body.modo-noche textarea {
+  color: #ffffff; /* Texto blanco */
+}
+
+/* Modo Noche: Estilo para la sección de eventos especiales */
+body.modo-noche .calendario-eventos {
+  background: #121212; /* Fondo negro */
+  color: #ffffff; /* Texto blanco */
+  padding: 15px;
+  border-radius: 10px; /* Bordes redondeados opcionales */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra opcional */
+}
+
+body.modo-noche .calendario-eventos h3 {
+  color: #ffffff; /* Título en blanco */
+}
+
+body.modo-noche .calendario-eventos ul li {
+  color: #ffffff; /* Texto de los elementos de la lista en blanco */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .inicio-contenido {
+    padding: 0 10px;
+  }
+  .inicio-foto {
+    width: 200px;
+  }
+  .inicio-botones {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .inicio-btn {
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* SECCION EDUCACION */
+
+
+/* =====================================================
+   Estilos para la Sección Mi Educación (Reemplazo Total)
+   Prefijo: .educacion-
+===================================================== */
+
+/* Contenedor principal */
+.educacion-section {
+  background: linear-gradient(135deg, #fff8f9, #fce4ec);
+  padding: 40px 20px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+}
+
+/* Título de la sección */
+.educacion-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #d2691e;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Línea de tiempo */
+.educacion-timeline {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Nodos de la línea de tiempo */
+.educacion-item {
+  background: #fce4ec;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.educacion-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Ícono del nodo */
+.educacion-icono {
+  font-size: 2em;
+  color: #a0522d;
+  margin-bottom: 8px;
+  animation: bounce 1s ease;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* Texto del nodo */
+.educacion-etapa {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  color: #6a1b9a;
+  display: block;
+  margin-bottom: 5px;
+}
+.educacion-ano {
+  font-size: 0.9em;
+  color: #6a1b9a;
+}
+
+/* Panel de detalles interactivo */
+.educacion-detalle {
+  background: #fff8f9;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  text-align: left;
+  animation: slideDown 0.5s ease;
+}
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+.educacion-detalle h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+.educacion-detalle p {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.1em;
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+
+/* Botón para cerrar el panel de detalles */
+.educacion-cerrar {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Baloo 2', cursive;
+  transition: background 0.3s ease;
+  margin-bottom: 20px;
+}
+.educacion-cerrar:hover {
+  background: #ce93d8;
+}
+
+/* Logros generales */
+.educacion-logros-global {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3em;
+  color: #d2691e;
+  margin-top: 20px;
+  animation: fadeIn 1s ease;
+}
+
+/* Animación de fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ocultar elementos */
+.hidden {
+  display: none;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .educacion-timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+  .educacion-item {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* FAMILIA */
+
+
+
+/* ===============================
+   Estilos para la Sección Mi Familia
+   (Prefijo: .familia-)
+================================= */
+
+
+/* Contenedor principal de la sección con un toque futurista y vibrante */
+
+
+
+/* Contenedor principal de la sección con un toque futurista y vibrante */
+.familia-section {
+  background: linear-gradient(135deg, #ffe0f0, #e1bee7);
+  padding: 50px 30px;
+  border-radius: 30px;
+  margin: 40px auto;
+  max-width: 900px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: background 0.5s ease;
+}
+
+/* Título con tipografía cursiva refinada, efecto etéreo y animación suave */
+.familia-titulo {
+  font-family: 'Comic Neue', cursive;
+  font-size: 2.8em;
+  color: #4a148c;
+  margin-bottom: 40px;
+  animation: fadeInDown 1s ease;
+  letter-spacing: 2px;
+}
+
+/* Galería flexible, adaptable, casi como un baile de elementos en armonía */
+.familia-galeria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* Cada foto, un tesoro enmarcado con elegancia; el contenedor con dimensiones fijas */
+.familia-foto {
+  position: relative;
+  background: #fff;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  width: 200px; /* Fija el ancho del contenedor */
+  height: 250px; /* Altura total para incluir imagen y nombre */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Las imágenes ahora se recortan para mantener la misma medida sin distorsión */
+.familia-foto img {
+  width: 100%;
+  height: 200px; /* Altura fija para todas las imágenes */
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+/* Nombre de la familia con tipografía manuscrita y espacio adecuado */
+.familia-nombre {
+  margin-top: 8px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.2em;
+  color: #6a1b9a;
+}
+
+/* Hover: efecto de zoom que celebra la belleza, junto con un globo de diálogo poético */
+.familia-foto:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.3);
+}
+.familia-foto:hover img {
+  transform: scale(1.12);
+}
+
+/* Globo de diálogo con un mensaje que se despliega con gracia y estilo */
+.familia-foto:hover::after {
+  content: attr(data-message);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f48fb1;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.95em;
+  white-space: nowrap;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+
+/* Botón inspirador y vibrante, listo para incentivar grandes momentos */
+.familia-btn {
+  background: linear-gradient(45deg, #f48fb1, #ec407a);
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  font-size: 1.1em;
+  border-radius: 35px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+.familia-btn:hover {
+  background: linear-gradient(45deg, #ec407a, #d81b60);
+  transform: scale(1.07);
+}
+
+/* Contenedor de historias familiares, revelado con una animación que desliza el alma */
+.familia-historias {
+  background: #fff;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.12);
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+  animation: slideDown 0.5s ease;
+}
+
+/* Texto del relato, con una tipografía que invita a soñar y a recordar */
+.familia-relato {
+  font-size: 1.3em;
+  color: #ad1457;
+  line-height: 1.6;
+  animation: fadeInUp 0.7s ease;
+}
+
+/* Ocultar el contenedor inicialmente (para efectos interactivos) */
+.hidden {
+  display: none;
+}
+
+/* ---------------------------
+   Keyframes de animación
+------------------------------ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+
+/* Responsividad que se adapta con la gracia del viento */
+@media (max-width: 768px) {
+  .familia-galeria {
+    flex-direction: column;
+    align-items: center;
+  }
+  .familia-foto {
+    width: 90%;
+    height: auto;
+  }
+  .familia-foto img {
+    height: auto;
+  }
+}
+
+
+
+
+
+
+
+/* SECCION MIS SUEÑOS */
+
+
+
+/* ===============================
+   Estilos para la Sección Mis Sueños
+   (Prefijo: .suenos-)
+================================= */
+
+/* Contenedor principal */
+.suenos-section {
+  background: linear-gradient(to bottom, #e3f2fd, #e1bee7);
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Título con tipografía manuscrita y animación fadeInDown */
+.suenos-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #4a148c;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+
+/* Estrella decorativa animada (flota y brilla suavemente) */
+.suenos-estrella {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 20px auto;
+  background: radial-gradient(circle, #fff59d, #fff176);
+  border-radius: 50%;
+  position: relative;
+  animation: floatStar 3s ease-in-out infinite;
+}
+
+/* Lista de sueños */
+.suenos-lista {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 30px 0;
+}
+.suenos-item {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3em;
+  color: #6a1b9a;
+  margin: 10px 0;
+  animation: fadeIn 1s ease;
+}
+
+/* Carrusel visual de inspiración */
+.suenos-carrusel {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0;
+  scroll-behavior: smooth;
+}
+.suenos-carrusel img {
+  flex: 0 0 auto;
+  width: 250px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.suenos-carrusel img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Botón interactivo */
+.suenos-boton {
+  background: #fff59d;  /* Amarillo claro */
+  color: #4a148c;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1em;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+  animation: pulse 1.5s infinite;
+}
+.suenos-boton:hover {
+  background: #fff176;
+  transform: scale(1.05);
+}
+
+/* Caja desplegable para el sueño secreto */
+.suenos-secreto {
+  background: #e1bee7; /* Lavanda suave */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 20px auto;
+  animation: slideDown 0.5s ease;
+}
+
+/* Frase inspiradora */
+.suenos-frase {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3em;
+  color: #4a148c;
+  font-style: italic;
+  margin-top: 30px;
+  animation: typewriter 2s steps(30) 1s forwards, blinkCursor 0.7s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Ocultar elementos inicialmente */
+.hidden {
+  display: none;
+}
+
+/* ---------------------------
+   Keyframes de animación
+------------------------------ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to   { max-height: 500px; opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes floatStar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Efecto de escritura tipo máquina para la frase (animación de typewriter) */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Efecto para parpadeo de cursor final en la frase */
+@keyframes blinkCursor {
+  from { border-right: 2px solid transparent; }
+  to { border-right: 2px solid #4a148c; }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .suenos-carrusel img {
+    width: 200px;
+  }
+  .suenos-titulo {
+    font-size: 2em;
+  }
+  .suenos-item {
+    font-size: 1.1em;
+  }
+}
+
+/* SECCION MI BLOCK  */
+
+
+/* ===============================
+   Estilos para la Sección Mi Blog
+   (Prefijo: .blog-)
+================================= */
+
+/* Contenedor principal */
+.blog-section {
+  background: #fceff3; /* Blanco rosado claro */
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Título de la sección */
+.blog-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #6a1b9a;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+
+/* Filtros de publicación */
+.blog-filtros {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.blog-filtro {
+  background: #e1bee7; /* Lavanda suave */
+  color: #4a148c;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: 'Patrick Hand', cursive;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.blog-filtro:hover {
+  background: #d1c4e9;
+}
+.blog-filtro.activo {
+  background: #f8bbd0; /* Un toque pastel más claro */
+  font-weight: bold;
+}
+
+/* Contenedor de publicaciones */
+.blog-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* Tarjetas de publicaciones */
+.blog-post {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 280px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.blog-post:hover {
+  transform: translateY(-5px);
+}
+.blog-post img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.blog-post img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.blog-post h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.5em;
+  color: #6a1b9a;
+  margin: 15px;
+}
+.blog-post p {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1em;
+  color: #4a148c;
+  margin: 0 15px 15px 15px;
+}
+.blog-vermas {
+  background: #f8bbd0;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  color: #4a148c;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.blog-vermas:hover {
+  background: #f48fb1;
+}
+
+/* Frase motivacional final */
+.blog-frase {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3em;
+  color: #6a1b9a;
+  margin-top: 20px;
+  animation: typewriter 3s steps(40) 1s forwards, fadeIn 1.5s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ---------------------------
+   Keyframes de animación
+------------------------------ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .blog-contenido {
+    flex-direction: column;
+    align-items: center;
+  }
+  .blog-filtros {
+    flex-direction: column;
+  }
+}
+
+
+
+
+/* SECCION COSAS FAVORITAS */
+
+
+/* ===============================
+   Estilos para la Sección Mis Cosas Favoritas
+   (Prefijo: .favoritas-)
+================================= */
+
+/* Contenedor principal */
+.favoritas-section {
+  background: linear-gradient(to bottom, #ffe0f0, #e1bee7);
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Título */
+.favoritas-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #ad1457;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+
+/* Filtro de categorías */
+.favoritas-categorias {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  padding: 5px;
+}
+.favoritas-btn {
+  background: #e1bee7;
+  color: #4a148c;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+.favoritas-btn:hover {
+  background: #f48fb1;
+}
+.favoritas-btn.activo {
+  background: #f8bbd0;
+  font-weight: bold;
+}
+
+/* Galería de tarjetas favoritas */
+.favoritas-galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+/* Tarjeta individual */
+.favorita-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+.favorita-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Círculo de color o imagen */
+.favorita-icono {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.favorita-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+.favorita-item img:hover {
+  transform: scale(1.1);
+}
+
+/* Texto de cada tarjeta */
+.favorita-item p {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.1em;
+  color: #4a148c;
+}
+
+/* Frase motivacional */
+.favoritas-frase {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3em;
+  color: #ad1457;
+  margin-top: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40) 1s forwards, fadeIn 1.5s ease;
+}
+
+/* ---------------------------
+   Keyframes de animación
+------------------------------ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Responsividad: en móviles, 1 columna; en tablets, 2; en pantallas grandes, 3-4 */
+@media (max-width: 768px) {
+  .favoritas-galeria {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+/* ===========================================
+   Estilos para la Sección Mi Calendario
+   (Prefijo: .calendario-)
+=========================================== */
+
+/* Contenedor principal */
+.calendario-section {
+  background: linear-gradient(to bottom, #b3e5fc, #fff);
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Título */
+.calendario-titulo {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2.5em;
+  color: #4a90e2;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+
+/* Controles del calendario (selector de mes) */
+.calendario-controles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.cal-btn {
+  background-color: #ffe0f0;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.cal-btn:hover {
+  background-color: #f8bbd0;
+}
+.cal-mes {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.4em;
+  color: #4a90e2;
+}
+
+/* Vista de calendario dinámica */
+.calendario-tabla {
+  margin: 0 auto 30px auto;
+  max-width: 700px;
+  border-collapse: collapse;
+}
+.calendario-tabla table {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+}
+.calendario-tabla th,
+.calendario-tabla td {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Baloo 2', cursive;
+  color: #4a148c;
+}
+.calendario-tabla td.evento {
+  background-color: #f8bbd0;
+  font-weight: bold;
+}
+
+/* Lista de eventos especiales */
+.calendario-eventos {
+  background: #fceff3;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.calendario-eventos h3 {
+  font-family: 'Baloo 2', cursive;
+  color: #d81b60;
+  margin-bottom: 10px;
+}
+.calendario-eventos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.calendario-eventos li {
+  font-family: 'Comic Neue', cursive;
+  color: #4a148c;
+  margin: 5px 0;
+}
+
+/* Mensaje motivacional */
+.calendario-mensaje p {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3em;
+  color: #4a90e2;
+  margin-bottom: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40) 1s forwards, fadeIn 1.5s ease;
+}
+
+/* Ilustración animada decorativa */
+.calendario-ilustracion {
+  margin-top: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+.calendario-ilustracion img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* ---------------------------
+   Keyframes de animación
+------------------------------ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .calendario-controles {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .calendario-tabla {
+    width: 95%;
+  }
+}
+
+
+/* SECCION SECRETOS */
+
+
+/* ===========================================
+   Estilos para la Sección Zona Secreta
+   (Prefijo: .zona-)
+=========================================== */
+
+/* Contenedor principal */
+.zona-section {
+  background: #fce4ec; /* Rosa pastel */
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 30px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+/* Título */
+.zona-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #ce93d8;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+
+/* Cofre interactivo */
+.zona-cofre {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.zona-cofre img {
+  width: 150px;
+  height: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.zona-cofre:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Campo de acceso secreto */
+.zona-acceso {
+  background: #fff8f9;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  animation: slideDown 0.5s ease;
+}
+.zona-acceso p {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  color: #ad1457;
+  margin-bottom: 10px;
+}
+.zona-acceso input[type="password"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid #ce93d8;
+  border-radius: 20px;
+  outline: none;
+  margin-bottom: 15px;
+  font-family: 'Baloo 2', cursive; /* Fuente amigable para campos de entrada */
+}
+.zona-acceso input[type="password"]::placeholder {
+  font-style: italic;
+  color: #ce93d8;
+}
+
+/* Contenido secreto */
+.zona-contenido {
+  background: #fff59d; /* Amarillo suave */
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease;
+}
+.zona-frase {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.3em;
+  color: #4a148c;
+  margin-bottom: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(30) 1s forwards, fadeIn 1s ease;
+}
+.zona-diario {
+  width: 90%;
+  height: 150px;
+  padding: 15px;
+  font-size: 1em;
+  border: 2px solid #ce93d8;
+  border-radius: 15px;
+  resize: vertical;
+  margin-bottom: 20px;
+  font-family: 'Baloo 2', cursive; /* Fuente amigable para campos de entrada */
+}
+
+/* Botón general para zona */
+.zona-btn {
+  background: #ce93d8;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1em;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.zona-btn:hover {
+  background: #ab47bc;
+  transform: scale(1.05);
+}
+
+/* Ocultar elementos por defecto */
+.hidden {
+  display: none;
+}
+
+/* ---------------------------
+   Keyframes de animación
+------------------------------ */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideDown {
+  from { max-height: 0; opacity: 0; }
+  to { max-height: 500px; opacity: 1; }
+}
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .zona-cofre img {
+    width: 120px;
+  }
+  .zona-acceso, .zona-contenido {
+    width: 90%;
+  }
+}
+@media (max-width: 480px) {
+  .zona-acceso input[type="password"] {
+    width: 100%;
+  }
+  .zona-diario {
+    width: 100%;
+  }
+}
+
+

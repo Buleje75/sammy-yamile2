@@ -1,0 +1,3473 @@
+/* css/style.css */
+
+/* Estilos generales y fondo visual pastel */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Baloo+2:wght@400;600&family=Poppins:wght@300;400;700&display=swap');
+
+/* ===========================================
+   Importación de Fuentes
+=========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Baloo+2:wght@400;600&family=Poppins:wght@300;400;700&display=swap');
+
+/**********************************************
+  Variables Generales
+***********************************************/
+:root {
+  --primary-color: #6a1b9a;
+  --accent-color: #ab47bc;
+  --hover-color: #ce93d8;
+  --bg-gradient-start: #f8bbd0;
+  --bg-gradient-end: #fce4ec;
+  --dropdown-bg: rgba(255, 255, 255, 0.98);
+  --shadow-light: rgba(0,0,0,0.1);
+  --shadow-medium: rgba(0,0,0,0.2);
+
+  /* Para Modo Oscuro */
+  --dark-bg: #1f1f2e;
+  --dark-card: #2d2d3f;
+  --dark-text: #f1f1f1;
+  --dark-accent: #e57373;
+}
+
+/**********************************************
+  Reseteo y Estilos Globales
+***********************************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(to bottom, #f9f9f9, #dbeafe);
+  color: #333;
+  line-height: 1.8;
+  font-size: 16px;
+  min-height: 100%;
+}
+
+/* Modo Oscuro: activado al togglear la clase .dark-theme en el body */
+body.dark-theme {
+  background: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/**********************************************
+  Header Fijo y Barra de Progreso
+***********************************************/
+.header-principal {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  box-shadow: 0 3px 12px var(--shadow-light);
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.header-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-color);
+  transition: width 0.2s ease;
+}
+
+/**********************************************
+  Navegación y Logo
+***********************************************/
+.navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+  transition: transform 0.5s ease;
+}
+
+.logo img:hover {
+  transform: rotate(360deg);
+}
+
+.logo span {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: var(--primary-color);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+}
+
+/**********************************************
+  Lista de Navegación (sin puntos, más grande)
+***********************************************/
+.nav-lista {
+  display: flex;
+  list-style: none; /* Sin puntos */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-lista li {
+  position: relative;
+  margin: 0 25px; /* Más espacioso */
+}
+
+/* Enlaces principales más grandes */
+.nav-lista > li > a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3em; /* Más grande */
+  padding: 5px 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.nav-lista > li > a:hover {
+  color: var(--hover-color);
+  transform: scale(1.08);
+}
+
+/* Cuando se hace clic, se resalta */
+.nav-lista > li > a.active {
+  color: var(--accent-color);
+}
+
+.nav-lista > li > a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  animation: fadeSlide 0.5s ease forwards;
+}
+
+/**********************************************
+  Dropdown: Submenús
+***********************************************/
+/* ====== DROPDOWN (CATEGORÍAS Y SUBCATEGORÍAS) ====== */
+
+/* Contenedor principal del dropdown */
+.dropdown {
+  position: relative; /* Contenedor relativo para el submenú */
+}
+
+/* Menú desplegable */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Coloca el submenú justo debajo del elemento principal */
+  left: 0;
+  min-width: 220px; /* Ancho mínimo */
+  background: var(--dropdown-bg); /* Fondo del submenú */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 0; /* Elimina márgenes */
+  padding: 10px 0; /* Espaciado interno */
+  opacity: 0; /* Oculto por defecto */
+  visibility: hidden; /* Oculto por defecto */
+  transform: translateY(-10px); /* Animación inicial */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* No clickeable cuando está oculto */
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+  list-style: none; /* Elimina las viñetas */
+}
+
+/* Mostrar el submenú al pasar el mouse */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Animación al aparecer */
+  pointer-events: auto; /* Habilita clics */
+}
+
+/* Asegura que el submenú no desaparezca al mover el mouse */
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Pseudo-elemento para ampliar el área hover (zona muerta invisible) */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px; /* Ajusta este valor para cubrir el espacio muerto */
+  width: 100%;
+  height: 10px; /* Altura del área extra para hover */
+  background: transparent; /* Invisible */
+  pointer-events: auto; /* Permite la interacción */
+}
+
+/* Estilos de cada opción en el menú */
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu a {
+  display: block; /* Ocupa todo el ancho */
+  padding: 12px 20px; /* Amplia área para facilitar el clic */
+  color: var(--primary-color);
+  font-size: 1.1em;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+  background: var(--hover-color); /* Ajusta el fondo al pasar el mouse */
+  color: var(--accent-color);
+}
+
+/**********************************************
+  Menú Hamburguesa (Versión Móvil)
+***********************************************/
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.nav-toggle:hover {
+  transform: rotate(90deg);
+}
+
+/**********************************************
+  Botón de Cambio de Tema
+***********************************************/
+.theme-toggle {
+  font-size: 0.9em;
+  background: #ffffff;
+  color: var(--primary-color);
+  margin-left: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  padding: 6px 15px;
+  transition: background 0.3s, color 0.3s, transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  transform: scale(1.07);
+}
+
+/**********************************************
+  Responsividad
+***********************************************/
+@media (max-width: 768px) {
+  .nav-lista {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+  .nav-lista.show {
+    display: flex;
+  }
+  .nav-lista li {
+    margin: 15px 0;
+  }
+  .nav-toggle {
+    display: block;
+  }
+}
+
+/**********************************************
+  Animaciones
+***********************************************/
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+
+
+
+
+/* =========================
+   Sección Presentación – Sammy
+   (Prefijo: .presentacion-)
+========================= */
+
+/* ==========================================================
+   Sección Presentación – Sammy (prefijo: .presentacion-)
+========================================================== */
+/* ===========================================================
+   Sección Presentación – Sammy
+   (Prefijo: .presentacion-)
+========================================================== */
+
+.presentacion-magica {
+  background: linear-gradient(135deg, #ffffff, #e3f2fd);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Saludo personal */
+#saludoPersonalizado {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.8em;
+  color: #d2691e;
+  margin-bottom: 20px;
+  animation: slideInDown 1s ease;
+}
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón para reproducir saludo (sin reproducir automáticamente) */
+.presentacion-btn {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 10px;
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.presentacion-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Avatar Personalizable */
+.avatar-contenedor {
+  background: #fce4ec;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.avatar-contenedor h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #ab47bc;
+  margin-bottom: 15px;
+}
+.avatar-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#avatarBase {
+  width: 200px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  animation: floatAvatar 4s ease-in-out infinite;
+}
+@keyframes floatAvatar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+.avatar-controles {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+  color: #6a1b9a;
+}
+.avatar-controles label {
+  display: block;
+  margin-bottom: 5px;
+}
+.avatar-controles select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ce93d8;
+}
+#guardarAvatarBtn {
+  background: #ab47bc;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#guardarAvatarBtn:hover {
+  transform: scale(1.05);
+}
+
+/* Lista de Avatares Predefinidos */
+.avatar-lista {
+  margin-top: 20px;
+}
+.avatar-lista h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.6em;
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+.avatar-opciones {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.avatar-opcion {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+.avatar-opcion:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-color: #ab47bc;
+}
+
+/* Selector de Emociones */
+.emociones {
+  margin: 40px 0;
+}
+.emociones h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #f48fb1;
+  margin-bottom: 15px;
+}
+.emociones-botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.emocion-btn {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.emocion-btn:hover {
+  background: #ce93d8;
+  transform: scale(1.1);
+}
+
+/* Contenedor de Efectos Visuales según Emoción */
+.estado-efecto {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.7);
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Datos Curiosos */
+.datos-curiosos {
+  margin-top: 30px;
+}
+#datoCurioso {
+  margin-top: 15px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  color: #d2691e;
+  background: #fff8f9;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  animation: fadeIn 0.5s ease;
+}
+.hidden {
+  display: none;
+}
+
+/* Herramienta de Dibujo Interactivo */
+.dibujo-interactivo {
+  margin-top: 40px;
+  background: #fce4ec;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.dibujo-interactivo h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 15px;
+}
+#canvasDibujo {
+  border: 2px dashed #ce93d8;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  margin: 10px auto;
+}
+#limpiarCanvasBtn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#limpiarCanvasBtn:hover {
+  transform: scale(1.05);
+}
+
+/* Área de Firma Mágica */
+.firma-magica {
+  margin-top: 40px;
+  background: #fff8f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.firma-magica h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+#firmaTexto {
+  width: 90%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ce93d8;
+  resize: vertical;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+}
+#guardarFirmaBtn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+#guardarFirmaBtn:hover {
+  transform: scale(1.05);
+}
+.firma-feedback {
+  margin-top: 10px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.2em;
+  color: #4a148c;
+}
+.firma-feedback.hidden {
+  display: none;
+}
+
+/* ===========================================================
+   Responsividad de Presentación
+========================================================== */
+@media (max-width: 768px) {
+  #avatarBase {
+    width: 150px;
+  }
+  .avatar-controles {
+    font-size: 1em;
+  }
+  .avatar-opciones {
+    justify-content: center;
+  }
+}
+
+
+
+
+
+
+/* SECCION MIS GUSTO */
+
+
+/* ===========================================================
+   Sección Gustos – Sammy
+   (Prefijo: .gustos-)
+=========================================================== */
+
+.gustos-section {
+  background: linear-gradient(135deg, #ffe0f0, #e1bee7);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+.gustos-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #ad1457;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* A. Flip Cards (Tarjetas de Gustos) */
+.gustos-flip-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.gustos-card {
+  perspective: 1000px;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+.gustos-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.gustos-card:hover .gustos-card-inner {
+  transform: rotateY(180deg);
+}
+.gustos-card-front, 
+.gustos-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.gustos-card-front {
+  background: #fff;
+  color: #6a1b9a;
+  font-size: 1em;
+}
+.gustos-card-front i {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+.gustos-card-back {
+  background: #fce4ec;
+  color: #d2691e;
+  transform: rotateY(180deg);
+  font-size: 0.9em;
+}
+
+/* B. Juego “Adivina mi gusto” */
+.gustos-adivina {
+  margin-bottom: 40px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.gustos-adivina h2 {
+  font-family: 'Patrick Hand', cursive;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+.gustos-quiz {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+.gustos-quiz .quiz-option {
+  background: #e1bee7;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.gustos-quiz .quiz-option:hover {
+  background: #ce93d8;
+  transform: scale(1.1);
+}
+.quiz-feedback {
+  margin-top: 15px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  color: #ab47bc;
+}
+
+/* C. Selector de Reacciones */
+.gustos-reacciones {
+  margin-bottom: 40px;
+  background: #fff8f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.gustos-reacciones h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #f48fb1;
+  margin-bottom: 15px;
+}
+.gustos-reacciones .reaccion-btn {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+  margin: 5px;
+}
+.gustos-reacciones .reaccion-btn:hover {
+  transform: scale(1.1);
+  background: #ce93d8;
+}
+.reacciones-contador {
+  margin-top: 10px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  color: #6a1b9a;
+}
+
+/* D. Audio de Gustos */
+.gustos-audio {
+  margin-bottom: 40px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.gustos-audio h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 15px;
+}
+.gustos-btn-audio {
+  background: #e1bee7;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+.gustos-btn-audio:hover {
+  transform: scale(1.1);
+  background: #ce93d8;
+}
+
+/* E. Encuesta Rápida */
+.gustos-encuesta {
+  margin-bottom: 40px;
+  background: #fce4ec;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.gustos-encuesta h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #ab47bc;
+  margin-bottom: 10px;
+}
+.encuesta-opciones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.encuesta-opciones img {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.encuesta-opciones img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.encuesta-resultado {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.2em;
+  color: #4a148c;
+}
+
+/* ===========================================================
+   Responsividad de la Sección Gustos
+========================================================== */
+@media (max-width: 768px) {
+  .gustos-flip-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .encuesta-opciones {
+    flex-direction: column;
+  }
+}
+
+
+
+
+/* SECCION VIDEO PRESENTACION */
+
+
+/* ===========================================================
+   Sección #videoPresentacion – Estilos Exclusivos
+   (Prefijo: .videoPresentacion-)
+========================================================== */
+
+.videoPresentacion-section {
+  background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 960px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.videoPresentacion-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.5em;
+  color: #4a148c;
+  margin-bottom: 10px;
+  animation: slideInDown 1s ease;
+}
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.videoPresentacion-intro {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.3em;
+  color: #6a1b9a;
+  margin-bottom: 30px;
+}
+
+/* Video Contenedor */
+.videoPresentacion-video-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.videoPresentacion-video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Botón de Pantalla Completa */
+.videoPresentacion-fullscreen-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Baloo 2', cursive;
+  transition: transform 0.3s ease;
+}
+.videoPresentacion-fullscreen-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Subtítulos tipo karaoke */
+.videoPresentacion-subtitulos {
+  margin-top: 10px;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.2em;
+  color: #4a148c;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  animation: fadeIn 1s ease;
+}
+
+/* Reacciones en vivo */
+.videoPresentacion-reacciones {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.videoPresentacion-reaccion-btn {
+  background: #fce4ec;
+  color: #6a1b9a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.videoPresentacion-reaccion-btn:hover {
+  transform: scale(1.1);
+  background: #e1bee7;
+}
+
+/* Encuesta Post-Video */
+.videoPresentacion-encuesta {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.videoPresentacion-encuesta-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+.encuesta-opciones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.encuesta-btn {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Baloo 2', cursive;
+  transition: transform 0.3s ease;
+}
+.encuesta-btn:hover {
+  transform: scale(1.1);
+}
+.videoPresentacion-encuesta-resultado {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.2em;
+  color: #4a148c;
+  margin-top: 10px;
+}
+
+/* Comentario Mágico */
+.videoPresentacion-comentario {
+  background: #fce4ec;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.videoPresentacion-comentario-titulo {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+.videoPresentacion-comentario-texto {
+  width: 90%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ce93d8;
+  resize: vertical;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+.videoPresentacion-comentario-btn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Baloo 2', cursive;
+  transition: transform 0.3s ease;
+}
+.videoPresentacion-comentario-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Ocultar elementos */
+.hidden {
+  display: none;
+}
+
+/* Responsividad para la Sección VideoPresentacion */
+@media (max-width: 768px) {
+  .videoPresentacion-video-container {
+    width: 95%;
+  }
+  .encuesta-opciones {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+/* SECCION MI GALERIA */
+
+
+/* ===========================================================
+   Sección #miGaleria – Galería de Creaciones de Sammy
+   (Prefijo: .miGaleria-)
+========================================================== */
+
+.miGaleria-section {
+  background: linear-gradient(135deg, #ffe0f0, #e1bee7);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* A. Encabezado */
+.miGaleria-header .miGaleria-titulo {
+  font-family: 'Sacramento', cursive;
+  font-size: 2.8em;
+  color: #6a1b9a;
+  margin-bottom: 5px;
+  animation: fadeInDown 1s ease;
+}
+.miGaleria-header .miGaleria-subtitulo {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.3em;
+  color: #ab47bc;
+  margin-bottom: 30px;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* B. Filtro de Categorías */
+.miGaleria-filtros {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.miGaleria-filtro {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.miGaleria-filtro:hover {
+  background: #ce93d8;
+  transform: scale(1.05);
+}
+.miGaleria-filtro.activo {
+  background: #ab47bc;
+}
+
+/* C. Galería de Tarjetas (Flip Cards) */
+.miGaleria-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.miGaleria-card {
+  perspective: 1000px;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+.miGaleria-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.miGaleria-card:hover .miGaleria-card-inner {
+  transform: rotateY(180deg);
+}
+.miGaleria-card-front,
+.miGaleria-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.miGaleria-card-front {
+  background: #fff;
+  color: #6a1b9a;
+  font-size: 1em;
+}
+.miGaleria-card-front i {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+.miGaleria-card-back {
+  background: #fce4ec;
+  color: #d2691e;
+  transform: rotateY(180deg);
+  font-size: 0.9em;
+}
+
+/* D. Modal/Visor de Creación */
+.miGaleria-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 224, 240, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.5s ease;
+}
+.miGaleria-modal.hidden {
+  display: none;
+}
+.miGaleria-modal-content {
+  background: #fff8f9;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: slideDown 0.5s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.miGaleria-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  color: #a0522d;
+  cursor: pointer;
+}
+.miGaleria-modal-detalle {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+  color: #4a148c;
+  margin-top: 15px;
+}
+.miGaleria-modal-acciones {
+  margin-top: 20px;
+}
+.miGaleria-modal-btn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.miGaleria-modal-btn:hover {
+  transform: scale(1.05);
+}
+
+/* E. Modo Presentación Automática */
+.miGaleria-presentacion {
+  margin: 40px 0;
+}
+.miGaleria-btn-slideshow {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.miGaleria-btn-slideshow:hover {
+  transform: scale(1.1);
+}
+
+/* F. Carrusel de Creaciones */
+.miGaleria-carrusel {
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+.miGaleria-carrusel-inner {
+  display: inline-flex;
+  gap: 15px;
+  transition: transform 0.5s ease;
+}
+.miGaleria-carrusel img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.miGaleria-carrusel img:hover {
+  transform: scale(1.05);
+}
+.miGaleria-carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+#carruselPrev {
+  left: 10px;
+}
+#carruselNext {
+  right: 10px;
+}
+
+/* ===========================================================
+   Responsividad para la Sección miGaleria
+========================================================== */
+@media (max-width: 768px) {
+  .miGaleria-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .encuesta-opciones {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+
+/* SECCION MI MAPAS DE SUEÑOS */
+
+
+/* ===========================================================
+   Sección #mapaDeSuenos – Galería de Sueños de Sammy
+   (Prefijo: .mapaDeSuenos-)
+========================================================== */
+/* ===========================================================
+   Sección #mapaDeSuenos – Galería de Sueños de Sammy
+   (Prefijo: .mapaDeSuenos-)
+========================================================== */
+/* ===========================================================
+   Sección #mapaDeSuenos – Galería de Sueños de Sammy (Prefijo: .mapaDeSuenos-)
+========================================================== */
+
+.mapaDeSuenos-section {
+  background: linear-gradient(135deg, #f7f0e9, #e3f2fd);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.mapaDeSuenos-header .mapaDeSuenos-titulo {
+  font-family: 'Sacramento', cursive;
+  font-size: 2.8em;
+  color: #6a1b9a;
+  margin-bottom: 5px;
+  animation: fadeInDown 1s ease;
+}
+.mapaDeSuenos-header .mapaDeSuenos-subtitulo {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.3em;
+  color: #ab47bc;
+  margin-bottom: 30px;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Input de búsqueda y botón de modo exploración */
+.mapaDeSuenos-busqueda {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ce93d8;
+  margin-top: 10px;
+  max-width: 300px;
+}
+.mapaDeSuenos-btn-explora {
+  background: #c8e6c9;
+  color: #4a148c;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.mapaDeSuenos-btn-explora:hover {
+  transform: scale(1.05);
+}
+
+/* Mapa Interactivo */
+.mapaDeSuenos-mapa {
+  position: relative;
+  margin: 0 auto 30px;
+  max-width: 900px;
+}
+.mapaDeSuenos-imagen {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.mapaDeSuenos-pin {
+  position: absolute;
+  font-size: 2em;
+  color: #f48fb1;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.mapaDeSuenos-pin:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+/* Tooltip de pin */
+.mapaDeSuenos-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 0.8em;
+  padding: 3px 6px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+}
+.mapaDeSuenos-pin:hover .mapaDeSuenos-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal de Sueño Desbloqueado */
+.mapaDeSuenos-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(247,240,233,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.5s ease;
+}
+.mapaDeSuenos-modal.hidden { display: none; }
+.mapaDeSuenos-modal-content {
+  background: #fff8f9;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: slideDown 0.5s ease;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.mapaDeSuenos-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  color: #a0522d;
+  cursor: pointer;
+}
+.mapaDeSuenos-modal-detalle {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+  color: #4a148c;
+  margin-top: 15px;
+}
+.mapaDeSuenos-modal-acciones {
+  margin-top: 20px;
+}
+.mapaDeSuenos-modal-btn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.mapaDeSuenos-modal-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Carrusel de Metas de Vida */
+.mapaDeSuenos-carrusel {
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+.mapaDeSuenos-carrusel-inner {
+  display: inline-flex;
+  gap: 15px;
+  transition: transform 0.5s ease;
+}
+.mapaDeSuenos-metacard {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  width: 150px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.mapaDeSuenos-metacard:hover {
+  transform: scale(1.05);
+}
+.mapaDeSuenos-metacard i {
+  font-size: 2em;
+  color: #d2691e;
+  margin-bottom: 5px;
+}
+.mapaDeSuenos-metacard p {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1em;
+  color: #4a148c;
+}
+
+/* Botones del carrusel */
+.mapaDeSuenos-carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+#carruselPrev { left: 10px; }
+#carruselNext { right: 10px; }
+
+/* Activador de "Sueño del Día" */
+.mapaDeSuenos-sueño-del-dia {
+  margin: 40px 0;
+  text-align: center;
+}
+.mapaDeSuenos-btn-sueño {
+  background: #e1bee7;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-family: 'Baloo 2', cursive;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.mapaDeSuenos-btn-sueño:hover {
+  transform: scale(1.1);
+}
+.mapaDeSuenos-sueño-texto {
+  margin-top: 20px;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.3em;
+  color: #4a148c;
+  animation: fadeIn 1s ease;
+}
+.mapaDeSuenos-sueño-texto.hidden {
+  display: none;
+}
+
+/* Diario de Sueños */
+.mapaDeSuenos-diario {
+  background: #fff8f9;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.mapaDeSuenos-diario h2 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+#diarioTexto {
+  width: 90%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ce93d8;
+  resize: vertical;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+#guardarDiarioBtn, #resetDiarioBtn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin: 5px;
+}
+#guardarDiarioBtn:hover, #resetDiarioBtn:hover {
+  transform: scale(1.05);
+}
+#ultimoSueño {
+  margin-top: 10px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.2em;
+  color: #4a148c;
+}
+
+/* ===========================================================
+   Responsividad de la Sección #mapaDeSuenos
+========================================================== */
+@media (max-width: 768px) {
+  .mapaDeSuenos-carrusel-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mapaDeSuenos-carrusel-btn {
+    top: auto;
+    bottom: 10px;
+  }
+}
+
+
+
+/* SECCION MIS SECRETOS */
+
+
+/* ===========================================================
+   Sección #secretos – Estilos (Prefijo: .secretos-)
+========================================================== */
+
+.secretos-section {
+  background: linear-gradient(135deg, #fce4ec, #e1bee7);
+  padding: 40px;
+  border-radius: 20px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* A. Encabezado */
+.secretos-header .secretos-titulo {
+  font-family: 'Sacramento', cursive;
+  font-size: 2.8em;
+  color: #6a1b9a;
+  margin-bottom: 5px;
+  animation: fadeInDown 1s ease;
+}
+.secretos-header .secretos-subtitulo {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.3em;
+  color: #ab47bc;
+  margin-bottom: 30px;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* B. Cofre Secreto */
+.secretos-cofre {
+  position: relative;
+  margin: 20px auto;
+  width: 220px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.secretos-cofre:hover {
+  transform: scale(1.05);
+}
+.secretos-cofre-img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.secretos-cofre-texto {
+  font-family: 'Comic Neue', sans-serif;
+  color: #4a148c;
+  margin-top: 10px;
+}
+
+/* C. Tarjetas Flip */
+.secretos-flipcards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.secretos-card {
+  perspective: 1000px;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+.secretos-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.secretos-card:hover .secretos-card-inner {
+  transform: rotateY(180deg);
+}
+.secretos-card-front, .secretos-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.secretos-card-front {
+  background: #fff;
+  color: #6a1b9a;
+  font-size: 1em;
+}
+.secretos-card-front i {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+.secretos-card-back {
+  background: #fce4ec;
+  color: #d2691e;
+  transform: rotateY(180deg);
+  font-size: 0.9em;
+}
+
+/* D. Diario de Sueños */
+.secretos-diario {
+  background: #fff8f9;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.secretos-diario h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+#diarioSecretos {
+  width: 90%;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ce93d8;
+  resize: vertical;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+#guardarSecretosBtn {
+  background: #ab47bc;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#guardarSecretosBtn:hover {
+  transform: scale(1.05);
+}
+
+/* E. Adivinanza Mágica */
+.secretos-adivinanza {
+  background: #fce4ec;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.secretos-adivinanza h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.8em;
+  color: #d2691e;
+  margin-bottom: 10px;
+}
+#respuestaAdivinanza {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ce93d8;
+  font-size: 1em;
+  margin-right: 10px;
+}
+#verificarAdivinanza {
+  background: #ab47bc;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#verificarAdivinanza:hover {
+  transform: scale(1.05);
+}
+.secretos-feedback {
+  margin-top: 10px;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.2em;
+  color: #ab47bc;
+}
+
+/* F. Mensaje Programado */
+.secretos-programados {
+  margin-bottom: 40px;
+}
+#btnProgramarMensaje {
+  background: #c8e6c9;
+  color: #4a148c;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#btnProgramarMensaje:hover {
+  transform: scale(1.1);
+}
+#tiempoMensaje {
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #ce93d8;
+  width: 80px;
+  margin-left: 10px;
+}
+#mensajeProgramado {
+  margin-top: 15px;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1.2em;
+  color: #4a148c;
+  animation: fadeIn 0.5s ease;
+}
+#mensajeProgramado.hidden { display: none; }
+
+/* G. Mensajes en Estrella Fugaz */
+.secretos-estrellas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3000;
+}
+
+/* H. Carrusel de Metas de Vida */
+.mapaDeSuenos-carrusel {
+  position: relative;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+.mapaDeSuenos-carrusel-inner {
+  display: inline-flex;
+  gap: 15px;
+  transition: transform 0.5s ease;
+}
+.mapaDeSuenos-metacard {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  width: 150px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.mapaDeSuenos-metacard:hover {
+  transform: scale(1.05);
+}
+.mapaDeSuenos-metacard i {
+  font-size: 2em;
+  color: #d2691e;
+  margin-bottom: 5px;
+}
+.mapaDeSuenos-metacard p {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1em;
+  color: #4a148c;
+}
+
+/* Botones del carrusel */
+.mapaDeSuenos-carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+#carruselPrev {
+  left: 10px;
+}
+#carruselNext {
+  right: 10px;
+}
+
+/* ===========================================================
+   Responsividad para la Sección #mapaDeSuenos
+========================================================== */
+@media (max-width: 768px) {
+  .mapaDeSuenos-carrusel-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mapaDeSuenos-carrusel-btn {
+    top: auto;
+    bottom: 10px;
+  }
+}
+
+
+
+
+
+/* SECCION MIS SECRETOS */
+
+
+
+/* Código CSS actualizado para la sección Mis Secretos - Versión Mejorada */
+
+/* Contenedor General */
+.secretos-container {
+  background: linear-gradient(135deg, #E6E6FA, #FADADD);
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto;
+  max-width: 900px;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* Modo Oscuro */
+.secretos-container.dark {
+  background: #2b2b2b;
+  color: #f9f9f9;
+}
+
+/* Título Encantado */
+.secretos-header h1 {
+  font-family: 'Sacramento', cursive;
+  color: #6a0dad;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 2.5em;
+}
+
+.secretos-header p {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  color: #555;
+  font-size: 1.2em;
+}
+
+.secretos-container.dark .secretos-header h1 {
+  color: #e6e6fa;
+}
+.secretos-container.dark .secretos-header p {
+  color: #ccc;
+}
+
+/* Barra Superior */
+.secretos-topbar {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.secretos-toggle {
+  background: #f0c27b;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+}
+.secretos-toggle:hover {
+  background: #d4a373;
+}
+
+/* Navegación por Pestañas */
+.secretos-nav {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.secretos-nav button {
+  background: #f0c27b;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+}
+
+.secretos-nav button:hover, .secretos-nav button.activo {
+  background: #d4a373;
+}
+
+/* Contenido de las Pestañas */
+.secretos-tab-content {
+  margin: 20px 0;
+}
+.secretos-tab-pane {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Cofres y Tarjetas */
+.secretos-chests {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.secretos-chest {
+  background: #fff;
+  border: 2px solid #f0c27b;
+  border-radius: 10px;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.secretos-chest:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+.secretos-chest button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f0c27b;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Tarjetas de Secretos */
+.secretos-cards {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  position: relative;
+  height: 220px;
+}
+.secretos-card {
+  perspective: 1000px;
+  width: 150px;
+  height: 200px;
+  position: relative;
+}
+.secretos-card > div {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.8s;
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+}
+.secretos-card-front {
+  background-color: #fff;
+}
+.secretos-card-back {
+  background-color: #f9f9f9;
+  transform: rotateY(180deg);
+}
+.secretos-card:hover .secretos-card-front {
+  transform: rotateY(180deg);
+}
+.secretos-card:hover .secretos-card-back {
+  transform: rotateY(360deg);
+}
+
+/* Caja de Pensamientos */
+.secretos-box {
+  text-align: center;
+  margin: 20px 0;
+}
+.secretos-box textarea {
+  width: 80%;
+  height: 120px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+.secretos-box textarea:focus {
+  border-color: #f0c27b;
+}
+.secretos-box button {
+  margin-top: 10px;
+  background: #f0c27b;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+}
+.secretos-box button:hover {
+  background: #d4a373;
+}
+
+/* Adivinanza, Timer y Voz */
+.secretos-riddle, .secretos-timer, .secretos-voice {
+  text-align: center;
+  margin: 20px 0;
+  font-family: 'Poppins', sans-serif;
+}
+.secretos-riddle input, .secretos-timer input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  margin: 5px;
+  transition: border-color 0.3s;
+}
+.secretos-riddle input:focus, .secretos-timer input:focus {
+  border-color: #f0c27b;
+}
+.secretos-riddle button, .secretos-timer button, .secretos-voice button {
+  background: #f0c27b;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+}
+.secretos-riddle button:hover, .secretos-timer button:hover, .secretos-voice button:hover {
+  background: #d4a373;
+}
+
+/* Libro de Secretos */
+#secretos_libroEntries {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background: #f9f9f9;
+  transition: background 0.3s;
+}
+.secretos-container.dark #secretos_libroEntries {
+  background: #444;
+  border-color: #666;
+}
+.secretos-libroEntry {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px dashed #ddd;
+  cursor: grab;
+}
+.secretos-libroEntry:last-child {
+  border-bottom: none;
+}
+.secretos-libroEntry:hover {
+  background: rgba(240, 194, 123, 0.2);
+}
+
+/* Modal */
+.secretos-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.3s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.secretos-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+.secretos-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+}
+.secretos-modal-actions {
+  margin-top: 15px;
+  text-align: right;
+}
+.secretos-modal-actions button {
+  background: #f0c27b;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s;
+}
+.secretos-modal-actions button:hover {
+  background: #d4a373;
+}
+
+/* Mensajes Flotantes */
+#secretos_floatingMessages {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.secretos-floatingMessage {
+  position: absolute;
+  font-family: 'Poppins', sans-serif;
+  color: #6a0dad;
+  animation: floatMessage 5s linear infinite;
+}
+@keyframes floatMessage {
+  0%   { opacity: 0; transform: translateY(100%); }
+  50%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+/* Alerta mágica para mensajes confirmatorios */
+.secretos-alerta {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f0c27b;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'Poppins', sans-serif;
+  transition: opacity 1s;
+}
+.secretos-alerta.fade-out {
+  opacity: 0;
+}
+
+
+/* SECCION MI RUTINA */
+
+/* Estilos Generales de la Sección Mi Rutina */
+.miRutina-container {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: 'Comic Neue', sans-serif;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Encabezado */
+.miRutina-header h1 {
+  font-family: 'Caveat', cursive;
+  font-size: 2.8em;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #4a90e2;
+}
+.miRutina-subtitle {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* Reloj Mágico */
+.miRutina-clockContainer {
+  text-align: center;
+  margin: 15px 0;
+}
+.miRutina-clock {
+  font-size: 2em;
+  font-weight: bold;
+}
+.miRutina-greeting {
+  font-size: 1.2em;
+  margin-top: 5px;
+}
+
+/* Música Ambiental */
+.miRutina-ambient {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+.miRutina-musicToggle {
+  background: #f7d794;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.miRutina-musicToggle:hover {
+  background: #f5b042;
+}
+
+/* Secciones de Rutina y Lista de Tareas */
+.miRutina-tasks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+.miRutina-section {
+  flex: 1 1 280px;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.miRutina-section:hover {
+  transform: scale(1.03);
+}
+.miRutina-section h2 {
+  font-family: 'Caveat', cursive;
+  color: #4a90e2;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.miRutina-taskList {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Tarjeta Individual de Actividad */
+.miRutina-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fefbd8;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.miRutina-task:hover {
+  background: #fceabb;
+}
+.miRutina-task.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Botón para Marcar como Hecha */
+.miRutina_taskBtn {
+  background: #f7d794;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.miRutina_taskBtn:hover {
+  background: #f5b042;
+  transform: scale(1.1);
+}
+
+/* Editor de Rutina */
+.miRutina-editor {
+  background: #fff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.miRutina-editor h2 {
+  font-family: 'Caveat', cursive;
+  color: #4a90e2;
+  text-align: center;
+  margin-bottom: 10px;
+}
+#miRutina_taskInput {
+  width: 100%;
+  height: 60px;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+#miRutina_taskTime {
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+#miRutina_addTaskBtn, 
+#miRutina_resetBtn {
+  background: #f7d794;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.3s;
+}
+#miRutina_addTaskBtn:hover,
+#miRutina_resetBtn:hover {
+  background: #f5b042;
+}
+
+/* Meta del Día */
+.miRutina-goal {
+  background: #fff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.miRutina-goal h2 {
+  font-family: 'Caveat', cursive;
+  color: #4a90e2;
+  margin-bottom: 10px;
+}
+#miRutina_goalInput {
+  width: 80%;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+#miRutina_goalBtn {
+  background: #f7d794;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s;
+}
+#miRutina_goalBtn:hover {
+  background: #f5b042;
+}
+#miRutina_goalStatus {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+/* Diario de Logros */
+.miRutina-log {
+  background: #fff;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.miRutina-log h2 {
+  font-family: 'Caveat', cursive;
+  color: #4a90e2;
+  margin-bottom: 10px;
+}
+#miRutina_logSummary {
+  font-size: 1.1em;
+}
+
+/* "Mi Día Mágico" */
+.miRutina-magic {
+  text-align: center;
+  margin: 20px 0;
+}
+#miRutina_magicBtn {
+  background: #f7d794;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Comic Neue', sans-serif;
+  transition: background 0.3s;
+}
+#miRutina_magicBtn:hover {
+  background: #f5b042;
+}
+#miRutina_magicMessage {
+  margin-top: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+/* Modal Opcional para Edición */
+.miRutina-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.3s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.miRutina-modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+.miRutina-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+}
+.miRutina-modalActions {
+  margin-top: 15px;
+  text-align: right;
+}
+.miRutina-modalActions button {
+  background: #f7d794;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s;
+}
+.miRutina-modalActions button:hover {
+  background: #f5b042;
+}
+
+/* Animación de Confeti */
+@keyframes confetti {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+.miRutina-confetti {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;
+  pointer-events: none;
+  animation: confetti 1s ease-out forwards;
+}
+
+
+/* SECCION COSAS QUE ESTOY APRENDIENDO */
+
+
+/* Contenedor General */
+.cosasAprendiendo-container {
+  background: linear-gradient(135deg, #fdfdfd, #e0f7fa);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 950px;
+  margin: 20px auto;
+  font-family: 'Comic Neue', sans-serif;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Encabezado Mágico */
+.cosasAprendiendo-header h1 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 2.8em;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #5e35b1;
+}
+.cosasAprendiendo-subtitle {
+  text-align: center;
+  font-size: 1.2em;
+  color: #616161;
+}
+
+/* Tarjetas de Aprendizaje */
+.cosasAprendiendo-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+.cosasAprendiendo-card {
+  width: 220px;
+  height: 150px;
+  perspective: 1000px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.cosasAprendiendo-card:hover {
+  transform: scale(1.05);
+}
+.cosasAprendiendo-card > div {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s, opacity 0.8s;
+}
+.cosasAprendiendo-cardFront {
+  background: #fff;
+}
+.cosasAprendiendo-cardBack {
+  background: #f1f8e9;
+  transform: rotateY(180deg);
+}
+.cosasAprendiendo-card:hover .cosasAprendiendo-cardFront {
+  transform: rotateY(180deg);
+}
+.cosasAprendiendo-card:hover .cosasAprendiendo-cardBack {
+  transform: rotateY(360deg);
+}
+.cosasAprendiendo-icon {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.cosasAprendiendo-description {
+  text-align: center;
+  font-size: 0.95em;
+  margin-bottom: 10px;
+}
+.cosasAprendiendo-progress span {
+  font-size: 1.2em;
+  color: #ffb300;
+}
+
+/* Categorías */
+.cosasAprendiendo-categories {
+  margin: 20px 0;
+}
+.cosasAprendiendo-categories h2 {
+  text-align: center;
+  font-family: 'Patrick Hand', cursive;
+  color: #5e35b1;
+  margin-bottom: 10px;
+}
+.cosasAprendiendo-category {
+  background: #e8eaf6;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.cosasAprendiendo-category:hover {
+  background: #c5cae9;
+}
+.cosasAprendiendo-category h3 {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.4em;
+  margin-bottom: 5px;
+  color: #3949ab;
+}
+.cosasAprendiendo-categoryContent {
+  display: none; /* Se mostrará al hacer click (toggle) */
+  animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Diario de Aprendizajes */
+.cosasAprendiendo-diary {
+  background: #fff;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.cosasAprendiendo-diary h2 {
+  font-family: 'Patrick Hand', cursive;
+  color: #5e35b1;
+  text-align: center;
+  margin-bottom: 10px;
+}
+#cosasAprendiendo_diaryInput {
+  width: 100%;
+  height: 70px;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+#cosasAprendiendo_diaryEntries {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  padding: 5px;
+  border-top: 1px dashed #ccc;
+}
+
+/* Mini Metas de Aprendizaje */
+.cosasAprendiendo-goals {
+  background: #e3f2fd;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.cosasAprendiendo-goals h2 {
+  font-family: 'Patrick Hand', cursive;
+  color: #5e35b1;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.cosasAprendiendo-goalItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.cosasAprendiendo-goalText {
+  flex: 1;
+  margin-right: 10px;
+  font-size: 1em;
+}
+.cosasAprendiendo-goalProgress {
+  width: 100px;
+  height: 15px;
+  margin-right: 10px;
+}
+.cosasAprendiendo-completeGoalBtn {
+  background: #ffca28;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.cosasAprendiendo-completeGoalBtn:hover {
+  background: #ffb300;
+}
+
+/* Reto Mágico Semanal */
+.cosasAprendiendo-challenge {
+  background: #f3e5f5;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.cosasAprendiendo-challenge h2 {
+  font-family: 'Patrick Hand', cursive;
+  color: #5e35b1;
+  margin-bottom: 10px;
+}
+#cosasAprendiendo_challengeText {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+#cosasAprendiendo_completeChallengeBtn {
+  background: #ffca28;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#cosasAprendiendo_completeChallengeBtn:hover {
+  background: #ffb300;
+}
+#cosasAprendiendo_challengeStatus {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #5e35b1;
+}
+
+/* Funciones Extras */
+.cosasAprendiendo-extras {
+  text-align: center;
+  margin: 20px 0;
+}
+#cosasAprendiendo_addTopicBtn, 
+#cosasAprendiendo_randomModeBtn {
+  background: #ffcc80;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background 0.3s;
+}
+#cosasAprendiendo_addTopicBtn:hover, 
+#cosasAprendiendo_randomModeBtn:hover {
+  background: #ffb74d;
+}
+#cosasAprendiendo_randomMessage {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #5e35b1;
+}
+
+/* Frase Flotante */
+.cosasAprendiendo-floatingPhrase {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1em;
+  animation: floatText 10s infinite;
+}
+@keyframes floatText {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-10px); opacity: 0.8; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal para Edición Detallada */
+.cosasAprendiendo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: modalFadeIn 0.3s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cosasAprendiendo-modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+.cosasAprendiendo-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+}
+.cosasAprendiendo-modalActions {
+  margin-top: 15px;
+  text-align: right;
+}
+.cosasAprendiendo-modalActions button {
+  background: #ffcc80;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s;
+}
+.cosasAprendiendo-modalActions button:hover {
+  background: #ffb74d;
+}
+
+
+
+/* SECCION INSPIRACION  */
+
+/* Contenedor Principal */
+.inspiraccion-container {
+  background: linear-gradient(135deg, #ffe0f0, #e0f7fa);
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 980px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Encabezado */
+.inspiraccion-header h1 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 3em;
+  text-align: center;
+  color: #9c27b0;
+  margin-bottom: 5px;
+}
+.inspiraccion-subtitle {
+  font-family: 'Comic Neue', sans-serif;
+  text-align: center;
+  font-size: 1.3em;
+  color: #555;
+}
+
+/* Frases Inspiradoras */
+.inspiraccion-phrases {
+  text-align: center;
+  margin: 20px 0;
+}
+.inspiraccion-phraseDisplay {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8em;
+  color: #5e35b1;
+  padding: 10px;
+  border: 2px dashed #9c27b0;
+  display: inline-block;
+  border-radius: 10px;
+  animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Canciones */
+.inspiraccion-songs h2 {
+  font-family: 'Amatic SC', cursive;
+  text-align: center;
+  color: #9c27b0;
+  margin-bottom: 10px;
+}
+.inspiraccion-songList {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+.inspiraccion-songList li {
+  margin: 10px 0;
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1em;
+}
+.inspiraccion-explainBtn {
+  margin-left: 10px;
+  background: #ffcc80;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.inspiraccion-explainBtn:hover {
+  background: #ffb74d;
+}
+
+/* Galería */
+.inspiraccion-gallery h2 {
+  font-family: 'Amatic SC', cursive;
+  text-align: center;
+  color: #9c27b0;
+  margin: 20px 0 10px;
+}
+.inspiraccion-galleryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.inspiraccion-galleryItem {
+  width: 200px;
+  height: 130px;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.inspiraccion-galleryItem:hover {
+  transform: scale(1.05);
+}
+.inspiraccion-galleryItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.inspiraccion-imageViewer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  z-index: 2000;
+}
+.inspiraccion-viewerClose {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #9c27b0;
+}
+.inspiraccion-imageViewer img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.inspiraccion-imageViewer p {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1em;
+  color: #333;
+}
+
+/* Personajes */
+.inspiraccion-characters h2 {
+  font-family: 'Amatic SC', cursive;
+  text-align: center;
+  color: #9c27b0;
+  margin: 20px 0 10px;
+}
+.inspiraccion-characterCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.inspiraccion-characterCard {
+  width: 180px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.inspiraccion-characterCard:hover {
+  transform: scale(1.05);
+}
+.inspiraccion-characterCard img {
+  width: 100%;
+  border-radius: 5px;
+}
+.inspiraccion_viewStoryBtn {
+  margin-top: 8px;
+  background: #ffcc80;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.inspiraccion_viewStoryBtn:hover {
+  background: #ffb74d;
+}
+
+/* Reto Mágico */
+.inspiraccion-challenge {
+  background: #f3e5f5;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.inspiraccion-challenge h2 {
+  font-family: 'Amatic SC', cursive;
+  color: #9c27b0;
+  margin-bottom: 10px;
+}
+#inspiraccion_challengeText {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+#inspiraccion_completeChallengeBtn {
+  background: #ffcc80;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#inspiraccion_completeChallengeBtn:hover {
+  background: #ffb74d;
+}
+#inspiraccion_challengeStatus {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #9c27b0;
+}
+
+/* Muro de Espejitos */
+.inspiraccion-wall {
+  background: #e8eaf6;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.inspiraccion-wall h2 {
+  font-family: 'Amatic SC', cursive;
+  color: #9c27b0;
+  margin-bottom: 10px;
+}
+.inspiraccion-wallMessages {
+  font-family: 'Comic Neue', sans-serif;
+  font-size: 1em;
+  color: #333;
+  overflow: hidden;
+  height: 50px;
+}
+
+/* Funciones Extras */
+.inspiraccion-extras {
+  text-align: center;
+  margin: 20px 0;
+}
+#inspiraccion_inspireNowBtn {
+  background: #ffcc80;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background 0.3s;
+}
+#inspiraccion_inspireNowBtn:hover {
+  background: #ffb74d;
+}
+.inspiraccion-diary h2 {
+  font-family: 'Amatic SC', cursive;
+  color: #9c27b0;
+  margin-bottom: 10px;
+}
+#inspiraccion_diaryInput {
+  width: 100%;
+  height: 70px;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+#inspiraccion_diaryEntries {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  padding: 5px;
+  border-top: 1px dashed #ccc;
+}
+.inspiraccion-medals {
+  margin-top: 15px;
+  font-size: 1.5em;
+  color: #ffca28;
+}
+
+/* Frase Flotante */
+#inspiraccion_floatingPhrase {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.2em;
+  animation: floatText 10s infinite;
+}
+@keyframes floatText {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-10px); opacity: 0.8; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal para historias (Personajes) */
+.inspiraccion-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: modalFadeIn 0.3s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.inspiraccion-modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+.inspiraccion-viewerClose {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: #9c27b0;
+}
+
+
+
+/* SECCION BUZON */
+
+/* Contenedor general del buzón */
+.buzon-container {
+  background: linear-gradient(135deg, #ffeef8, #e0f7fa);
+  padding: 25px;
+  border-radius: 10px;
+  max-width: 980px;
+  margin: 20px auto;
+  font-family: 'Comic Neue', sans-serif;
+  color: #333;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Encabezado */
+.buzon-header h1 {
+  font-family: 'Cherry Swash', cursive;
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #d81b60;
+}
+.buzon-subtitle {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+}
+
+/* Formulario encantado */
+.buzon-form {
+  margin: 20px 0;
+  text-align: center;
+}
+#buzon_form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#buzon_nombre,
+#buzon_mensaje,
+#buzon_emoji {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+}
+#buzon_mensaje {
+  resize: vertical;
+}
+#buzon_sendBtn {
+  background: #ffcc80;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+#buzon_sendBtn:hover {
+  background: #ffb74d;
+}
+.buzon-confirmation {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #d81b60;
+  animation: confetti 1s ease-out;
+}
+
+/* Animación de confeti para confirmar envíos */
+@keyframes confetti {
+  0% { opacity: 0; transform: translateY(-20px) scale(0.5); }
+  50% { opacity: 1; transform: translateY(0) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-20px) scale(0.5); }
+}
+
+/* Visor de mensajes: Galería */
+.buzon-gallery h2 {
+  font-family: 'Cherry Swash', cursive;
+  text-align: center;
+  color: #d81b60;
+  margin: 20px 0 10px;
+}
+.buzon-messages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.buzon-message {
+  width: 150px;
+  height: 100px;
+  background: #fff;
+  border: 2px solid #ffcc80;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.buzon-message:hover {
+  transform: scale(1.05);
+}
+/* Ejemplo: puede usarse diferentes estilos (sobre, estrella, cofre) */
+
+/* Exportador */
+.buzon-export {
+  text-align: center;
+  margin-top: 20px;
+}
+.buzon-export button {
+  background: #ffcc80;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.buzon-export button:hover {
+  background: #ffb74d;
+}
+
+/* Modal para mensajes */
+.buzon-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: modalFadeIn 0.3s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.buzon-modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+.buzon-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #d81b60;
+}
+.buzon-modalActions {
+  margin-top: 15px;
+  text-align: right;
+}
+.buzon-modalActions button {
+  background: #ffcc80;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s;
+}
+.buzon-modalActions button:hover {
+  background: #ffb74d;
+}

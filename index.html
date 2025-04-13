@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sammy - Página Personal</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: Comic Neue y Poppins -->
+  <link href="https://fonts.googleapis.com/css?family=Comic+Neue|Poppins&display=swap" rel="stylesheet">
+  <!-- Font Awesome para los íconos bonitos -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+  <!-- Encabezado y Navegación Principal -->
+
+
+
+<!-- Encabezado y Navegación Principal -->
+<!-- Header con categorías y subcategorías -->
+<header class="header-principal">
+  <nav class="navegacion">
+    <!-- Logo animado -->
+    <div class="logo">
+      <a href="index.html">
+        <img src="imagenes/mariposa.png" alt="Logo de Sammy">
+        <span>Sammy 🌈</span>
+      </a>
+    </div>
+    <!-- Menú de navegación -->
+    <ul class="nav-lista">
+      <!-- Categoría: Inicio -->
+      <li class="dropdown">
+        <a href="index.html">Inicio</a>
+        <ul class="dropdown-menu">
+          <li><a href="index.html#inicio">Bienvenida</a></li>
+          <li><a href="index.html#educacion">Educación</a></li>
+          <li><a href="index.html#familia">Familia</a></li>
+        </ul>
+      </li>
+      <!-- Categoría: Sobre mí -->
+      <li class="dropdown">
+        <a href="about.html">Sobre mí</a>
+        <ul class="dropdown-menu">
+          <li><a href="about.html#presentacion">Presentación</a></li>
+          <li><a href="about.html#gustos">Cosas Favoritas</a></li>
+          <li><a href="about.html#videoPresentacion">Video Presentación</a></li>
+          <li><a href="about.html#miGaleria">Galería</a></li>
+          <li><a href="about.html#mapaDeSuenos">Mapa de Sueños</a></li>
+        </ul>
+      </li>
+      <!-- Categoría: Galería de Vida -->
+      <li class="dropdown">
+        <a href="public/galeriavida.html#inicio">Galería Vida</a>
+        <ul class="dropdown-menu">
+          <li><a href="public/galeriavida.html#inicio">Inicio</a></li>
+          <li><a href="public/galeriavida.html#galeria">Galería</a></li>
+          <li><a href="public/galeriavida.html#diario-fotografico">Diario</a></li>
+          <li><a href="public/galeriavida.html#linea-tiempo">Línea del Tiempo</a></li>
+          <li><a href="public/galeriavida.html#mapa-aventuras">Mapa</a></li>
+          <li><a href="public/galeriavida.html#emociones">Mis Emociones</a></li>
+          <li><a href="public/galeriavida.html#recuerdos">Recuerdos</a></li>
+        </ul>
+      </li>
+      <!-- Categoría sin submenú -->
+      <li><a href="contact.html">Contáctame</a></li>
+    </ul>
+    <!-- Botón de menú hamburguesa (aparece en móviles) -->
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </nav>
+  <!-- Barra de progreso para scroll -->
+  <div class="header-progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</header>
+
+
+  <main>
+
+<!-- Sección Inicio Especial -->
+<section id="inicio" class="inicio-section">
+  <!-- FONDO ANIMADO -->
+  <div class="inicio-fondo">
+    <img src="img/nube1.png" class="nube nube1" alt="Nube flotante">
+    <img src="img/nube2.png" class="nube nube2" alt="Nube flotante">
+    <img src="img/arcoiris.png" class="decor arcoiris" alt="Arcoíris">
+    <img src="img/estrellas.png" class="decor estrellas" alt="Estrellas">
+  </div>
+
+  <!-- BOTÓN DE MODO DÍA/NOCHE -->
+  <button id="modoToggle" class="inicio-btn-modo">🌞 Modo Noche</button>
+
+  <!-- PRESENTACIÓN CENTRAL -->
+  <div class="inicio-contenido">
+    <img src="imagenes/Sami 3.png" alt="Sammy" class="inicio-foto anim-float" id="fotoSammy">
+    <h1 class="inicio-titulo anim-slide-in">¡Hola, soy Sammy! 🎨✨</h1>
+    <p id="animatedText" class="inicio-frase anim-typing">
+      Me encanta dibujar, imaginar y soñar sin límites...
+    </p>
+
+    <!-- BOTONES DE NAVEGACIÓN INTERACTIVOS -->
+    <div class="inicio-botones">
+      <a href="#suenos" class="inicio-btn arcoiris">🌈 Mis Sueños</a>
+      <a href="#blog" class="inicio-btn flor">🌸 Mi Blog</a>
+    </div>
+  </div>
+
+  <!-- CONTROL DE MÚSICA Y VOZ -->
+  <div class="inicio-musica">
+    <audio id="bgMusic" src="musica/musica principal.mp3" loop></audio>
+    <button id="toggleMusic" class="inicio-btn-musica">🎵 Música:</button>
+  
+
+  </div>
+  
+  
+
+  <!-- FRASE MOTIVADORA FINAL -->
+  <div class="inicio-frase-final">
+    <p>"Bienvenidos a mi mundo de colores, sueños y sonrisas 🌟"</p>
+  </div>
+
+  <!-- CONTENEDOR DE CONFETTI (se activa al cargar la página) -->
+  <canvas id="confettiCanvas" class="inicio-confetti"></canvas>
+</section>
+
+
+
+
+
+
+<!-- Sección Mi Educación -->
+<section id="educacion" class="educacion-section">
+  <h2 class="educacion-titulo">Mi Educación</h2>
+  
+  <div class="educacion-timeline">
+    <!-- Nodo para Educación Inicial -->
+    <div class="educacion-item" 
+         data-etapa="Inicial" 
+         data-ano="2010-2012" 
+         data-descripcion="Durante la etapa Inicial, descubrí un mundo de juegos, colores y mis primeras letras; aprendí a través del juego y la creatividad." 
+         data-logros="Primeros dibujos, descubrimiento de colores.">
+      <div class="educacion-icono">
+        <i class="fas fa-book"></i>
+      </div>
+      <span class="educacion-etapa">Inicial</span>
+      <span class="educacion-ano">2010-2012</span>
+    </div>
+    <!-- Nodo para Educación Primaria -->
+    <div class="educacion-item" 
+         data-etapa="Primaria" 
+         data-ano="2012-2018" 
+         data-descripcion="En Primaria, desarrollé habilidades básicas y descubrí mi pasión por el arte. Participé en clases de dibujo y narración de cuentos." 
+         data-logros="Participación en concursos de dibujo.">
+      <div class="educacion-icono">
+        <i class="fas fa-school"></i>
+      </div>
+      <span class="educacion-etapa">Primaria</span>
+      <span class="educacion-ano">2012-2018</span>
+    </div>
+    <!-- Nodo para Educación Secundaria -->
+    <div class="educacion-item" 
+         data-etapa="Secundaria" 
+         data-ano="2018-2020" 
+         data-descripcion="La secundaria fue un tiempo de consolidación, donde exploré proyectos artísticos y comencé a participar en exposiciones escolares." 
+         data-logros="Premios en exposiciones escolares.">
+      <div class="educacion-icono">
+        <i class="fas fa-paint-brush"></i>
+      </div>
+      <span class="educacion-etapa">Secundaria</span>
+      <span class="educacion-ano">2018-2020</span>
+    </div>
+    <!-- Nodo para Colegio Actual -->
+    <div class="educacion-item" 
+         data-etapa="Colegio Actual" 
+         data-ano="2020-Presente" 
+         data-descripcion="Actualmente, en el Colegio, afronto nuevos retos, proyecto mi futuro y sigo potenciando mi creatividad y liderazgo." 
+         data-logros="Diploma de excelencia, proyectos destacados.">
+      <div class="educacion-icono">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <span class="educacion-etapa">Colegio Actual</span>
+      <span class="educacion-ano">2020-Presente</span>
+    </div>
+  </div>
+
+  <!-- Botón para cerrar el panel de detalles (se muestra solo cuando se está abierto) -->
+  <button class="educacion-cerrar" id="cerrarDetalle" style="display:none;">Cerrar Detalle</button>
+  
+  <!-- Panel interactivo de detalles -->
+  <div class="educacion-detalle hidden" id="detalleEducacion">
+    <h3 id="detalle-titulo"></h3>
+    <p id="detalle-descripcion"></p>
+    <p id="detalle-logros"></p>
+  </div>
+
+  <p class="educacion-logros-global">
+    Logros generales: <i class="fas fa-award"></i> Reconocimientos, diplomas y proyectos destacados.
+  </p>
+</section>
+
+<!-- Nota: Se mantiene el modal como opción futura si se requiere más interacción, pero en esta propuesta se usará el panel expandible -->
+
+
+
+
+
+
+
+
+
+    <!-- 5. Sección Mi familia -->
+<section id="familia" class="familia-section">
+  <h2 class="familia-titulo">Mi Familia</h2>
+
+  <div class="familia-galeria">
+    <div class="familia-foto" data-message="Papá: ¡Soy el más chistoso!">
+      <img src="imagenes/Papa2.png" alt="Papá">
+      <p class="familia-nombre">Papá</p>
+    </div>
+    <div class="familia-foto" data-message="Mamá: Siempre con amor">
+      <img src="imagenes/Mama.jpeg  " alt="Mamá">
+      <p class="familia-nombre">Mamá</p>
+    </div>
+    <div class="familia-foto" data-message="Hermanos: Jugamos todo el día">
+      <img src="imagenes/Leydi.jpeg" alt="Hermana">
+      <p class="familia-nombre">Hermana</p>
+    </div>
+    <div class="familia-foto" data-message="Hermanos: Jugamos todo el día">
+      <img src="imagenes/Brandon2.jpeg" alt="Hermano">
+      <p class="familia-nombre">Hermano</p>
+    </div>
+    <div class="familia-foto" data-message="Hermanos: Jugamos todo el día">
+      <img src="imagenes/Abuelo.png" alt="Abuelo">
+      <p class="familia-nombre">Abuelo</p>
+    </div>
+    <div class="familia-foto" data-message="Hermanos: Jugamos todo el día">
+      <img src="imagenes/Abuela.png" alt="Abuela">
+      <p class="familia-nombre">Abuela</p>
+    </div>
+  </div>
+
+  <button id="toggleFamilyStories" class="familia-btn">Mostrar Historias Familiares</button>
+
+  <div id="familyStories" class="familia-historias hidden">
+    <p class="familia-relato">
+      Mi mamá es la más dulce 🍰, papá el más divertido 🤹 y mis hermanos, mis compañeros de aventuras 🚀.
+    </p>
+  </div>
+
+  <!-- Opcional: Audio de melodía familiar (silenciado por defecto) -->
+  <audio id="familiaAudio" src="audio/family.mp3" loop muted style="display:none;"></audio>
+</section>
+
+
+
+
+
+    <!-- 6. Sección Mis sueños -->
+    <!-- 6. Sección Mis Sueños -->
+<section id="suenos" class="suenos-section">
+  <h2 class="suenos-titulo">Mis Sueños</h2>
+
+  <!-- Contenedor de estrella animada decorativa -->
+  <div class="suenos-estrella" title="Sigue tus sueños ✨"></div>
+
+  <ul class="suenos-lista">
+    <li class="suenos-item">👗 Quiero Comprar un vestido hermoso</li>
+    <li class="suenos-item">🌍 Anhelo viajar a japon, comer sushi</li>
+    <li class="suenos-item">👧 Desea agradar a todas las personas de mi entorno</li>
+  </ul>
+
+  <!-- Carrusel visual de inspiración (scroll horizontal) -->
+  <div class="suenos-carrusel">
+    <img src="imagenes/japon.png" alt="Sueño 1: Pintando un mural">
+    <img src="imagenes/COMPRANDO UNA LAPTOP.png" alt="Sueño 2: Viajando en globo">
+    <img src="imagenes/Sushy.png" alt="Sueño 3: Compartiendo alegría">
+  </div>
+
+  <!-- Botón interactivo de revelación -->
+  <button id="secretDreamBtn" class="suenos-boton">🌟 ¡Haz click para ver un sueño secreto!</button>
+
+  <!-- Caja desplegable animada para el sueño secreto -->
+  <div id="secretDream" class="suenos-secreto hidden">
+    <p>🌠 ¡Seré una gran artista e innovadora, dejando mi huella en el lienzo del mundo!</p>
+  </div>
+
+  <!-- Frase inspiradora animada -->
+  <div class="suenos-frase">
+    <p>"Los sueños son semillas de magia que florecen en los corazones valientes."</p>
+  </div>
+</section>
+
+
+
+
+
+    <!-- 7. Sección Mi Blog -->
+<section id="blog" class="blog-section">
+  <h2 class="blog-titulo">📝 Mi Blog</h2>
+
+  <!-- NUEVO: Filtro por categorías -->
+  <div class="blog-filtros">
+    <button class="blog-filtro activo" data-filtro="todos">Todos</button>
+    <button class="blog-filtro" data-filtro="dibujos">Dibujos</button>
+    <button class="blog-filtro" data-filtro="aventuras">Aventuras</button>
+    <button class="blog-filtro" data-filtro="pensamientos">Pensamientos</button>
+  </div>
+
+  <!-- NUEVO: Tarjetas de publicaciones -->
+  <div class="blog-contenido">
+    <article class="blog-post" data-categoria="dibujos">
+      <img src="img/blog1.jpg" alt="Dibujo de un unicornio">
+      <h3>Mi unicornio mágico 🌈</h3>
+      <p>Hoy dibujé un unicornio con alas que vuela sobre los sueños de las personas...</p>
+      <button class="blog-vermas">Leer más</button>
+    </article>
+
+    <article class="blog-post" data-categoria="aventuras">
+      <img src="img/blog2.jpg" alt="Excursión al parque">
+      <h3>Aventura en el bosque 🍃</h3>
+      <p>Fui al parque con mis hermanos, vimos mariposas y recogimos hojas para mi colección...</p>
+      <button class="blog-vermas">Leer más</button>
+    </article>
+
+    <article class="blog-post" data-categoria="pensamientos">
+      <img src="img/blog3.jpg" alt="Reflexión sobre la amistad">
+      <h3>¿Qué es una verdadera amiga? 🤔</h3>
+      <p>Una amiga es alguien que te escucha, juega contigo y te cuida cuando estás triste...</p>
+      <button class="blog-vermas">Leer más</button>
+    </article>
+  </div>
+
+  <!-- NUEVO: Frase motivacional final -->
+  <div class="blog-frase">
+    <p>"Escribo para guardar mis recuerdos, pintar mis ideas y abrazar mis sueños con palabras."</p>
+  </div>
+</section>
+
+
+
+
+
+   <!-- 8. Sección Cosas Favoritas -->
+<section id="favoritas" class="favoritas-section">
+  <h2 class="favoritas-titulo">💖 Mis Cosas Favoritas</h2>
+
+  <!-- NUEVO: Filtro por tipo de favoritos -->
+  <div class="favoritas-categorias">
+    <button class="favoritas-btn activo" data-filtro="todas">Todas</button>
+    <button class="favoritas-btn" data-filtro="colores">Colores</button>
+    <button class="favoritas-btn" data-filtro="comidas">Comidas</button>
+    <button class="favoritas-btn" data-filtro="peliculas">Películas</button>
+    <button class="favoritas-btn" data-filtro="animales">Animales</button>
+  </div>
+
+  <!-- NUEVO: Grid de tarjetas favoritas -->
+  <div class="favoritas-galeria">
+    <div class="favorita-item" data-categoria="colores">
+      <div class="favorita-icono" style="background-color: #f48fb1;"></div>
+      <p>Rosa pastel</p>
+    </div>
+    <div class="favorita-item" data-categoria="comidas">
+      <img src="imagenes/macarrones.png" alt="Macarrones con queso">
+      <p>Macarrones con Queso 🧀</p>
+    </div>
+    <div class="favorita-item" data-categoria="peliculas">
+      <img src="imagenes/polluelo.png" alt="Película favorita">
+      <p>ONE PUSHMAN 🎬</p>
+    </div>
+    <div class="favorita-item" data-categoria="animales">
+      <img src="imagenes/gatito.png" alt="Gatito tierno">
+      <p>Gatitos 🐱</p>
+    </div>
+    <div class="favorita-item" data-categoria="colores">
+      <div class="favorita-icono" style="background-color: #ce93d8;"></div>
+      <p>Lavanda</p>
+    </div>
+  </div>
+
+  <!-- NUEVO: Frase emocional -->
+  <div class="favoritas-frase">
+    <p>"Mis cosas favoritas son como estrellitas que me hacen sonreír cada día ✨"</p>
+  </div>
+</section>
+
+
+
+
+
+   <!-- 9. Sección Mi Calendario -->
+<section id="calendario" class="calendario-section">
+  <h2 class="calendario-titulo">📅 Mi Calendario</h2>
+
+  <!-- NUEVO: Selector de mes -->
+  <div class="calendario-controles">
+    <button class="cal-btn" id="mesAnterior">←</button>
+    <span id="mesActual" class="cal-mes">Abril 2025</span>
+    <button class="cal-btn" id="mesSiguiente">→</button>
+  </div>
+
+  <!-- NUEVO: Vista de calendario -->
+  <div class="calendario-tabla">
+    <!-- La tabla del mes se llenará dinámicamente con JS -->
+  </div>
+
+  <!-- NUEVO: Lista de eventos destacados -->
+  <div class="calendario-eventos">
+    <h3>🌟 Eventos especiales</h3>
+    <ul>
+      <li>🖼️ 15 de Abril - Exposición de Dibujos</li>
+      <li>🎉 22 de Abril - Fiesta de Cumpleaños de Sammy</li>
+      <li>🌸 27 de Abril - Día del Picnic Familiar</li>
+    </ul>
+  </div>
+
+  <!-- NUEVO: Mensaje motivacional dinámico -->
+  <div class="calendario-mensaje">
+    <p>"Cada día es una página en blanco para pintar tu historia 🎨"</p>
+  </div>
+
+  <!-- NUEVO: Ilustración animada decorativa -->
+  <div class="calendario-ilustracion">
+    <img src="img/calendario-fantasia.png" alt="Calendario mágico de Sammy">
+  </div>
+</section>
+
+
+    <!-- 11. Sección Zona Secreta -->
+ <!-- 10. Sección Zona Secreta -->
+<section id="zonaSecreta" class="zona-section">
+  <h2 class="zona-titulo">🗝️ Zona Secreta</h2>
+
+  <!-- NUEVO: Cofre animado con interacción -->
+  <div class="zona-cofre" id="abrirCofre">
+    <img src="img/cofre-cerrado.png" alt="Cofre cerrado">
+    <p>Haz click para abrir el cofre secreto...</p>
+  </div>
+
+  <!-- NUEVO: Campo de acceso secreto -->
+  <div class="zona-acceso hidden" id="zonaAcceso">
+    <p>Introduce la clave mágica para entrar:</p>
+    <input type="password" id="claveSecreta" placeholder="Ej: pastelito123">
+    <button class="zona-btn" id="verificarClave">Entrar</button>
+  </div>
+
+  <!-- NUEVO: Contenido oculto -->
+  <div class="zona-contenido hidden" id="contenidoSecreto">
+    <p class="zona-frase">✨ Bienvenida a tu lugar secreto, Sammy. Aquí puedes soñar sin límites 💫</p>
+
+    <!-- NUEVO: Diario secreto editable -->
+    <textarea class="zona-diario" placeholder="Escribe tus secretos aquí..."></textarea>
+
+    <!-- NUEVO: Botón para guardar (simulado) -->
+    <button class="zona-btn" id="guardarSecreto">Guardar en el corazón 💖</button>
+  </div>
+</section>
+
+  </main>
+  <footer>
+    <p>&copy; 2025 Sammy. Todos los derechos reservados.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
